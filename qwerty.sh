@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc main.c libft/libft.a
+gcc main.c commands.c libft/libft.a
 
