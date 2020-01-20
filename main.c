@@ -9,6 +9,7 @@ void print_list(t_stack *n)
         write(1," ",1);
         n = n->next;
     }
+    ft_putchar('\n');
 }
 
 void reverse_stack(t_stack **head)
@@ -81,21 +82,28 @@ t_stack *create_stack(t_stack **head,char **argv,int argc)
     return (a);
 }
 
-void rotate_a(t_stack **a)
+void rotate_a(t_stack **head)
 {
     t_stack *tmp;
-    t_stack **ptr;
-    t_stack *last;
 
-    tmp = *a;
-    ptr = &(*a)->next;
-    while (*ptr && (*ptr)->next != NULL)
-        ptr = &(*ptr)->next;
-    (*a) = (*ptr);
-    (*ptr) = tmp;
+    tmp = *head;
+    while (*head && (*head)->next != NULL)
+        *head = (*head)->next;
+    (*head)->next = tmp;//добавляем первый элемент в конец
+    (*head) = tmp;//переприсваевыаем последний элемент
+    tmp = tmp->next;//запоминаем второй элемент
+    (*head)->next = NULL;//заканчиваем лист
+    (*head) = tmp;//снова указываем начало листа на второй элемент
 
-    (*a)->next = (*ptr)->next;
-    (*ptr)->next = NULL;
+
+
+
+
+
+//    (*a) = (*ptr);
+//    (*ptr) = tmp;
+//    (*a)->next = (*ptr)->next;
+//    (*ptr)->next = NULL;
 
 }
 
@@ -111,14 +119,13 @@ int main(int argc, char **argv)
         b = create_stack(&head,argv,argc);
     }
 	print_list(a);
-    printf("\n");
     //swap_a(&a);
     //reverse_stack(&a);
     //swap_ss(&a,&b);
     rotate_a(&a);
     print_list(a);
 
-    printf("\n__________________\n");
+    printf("__________________\n");
 
 //    print_list(b);
 //    printf("\n");
@@ -126,5 +133,6 @@ int main(int argc, char **argv)
    // reverse_stack(&b);
 //    print_list(b);
     free(head);
+
     return (0);
 }
