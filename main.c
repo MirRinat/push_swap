@@ -4,6 +4,11 @@
 
 void qs(int *s_arr,int first,int last)
 {
+    int z = 0;
+    int size = 9;
+    while (z != (size))
+        printf("%d ",(int)s_arr[z++]);
+    printf("\n");
 	if (first < last)
 	{
 		int left = first, right = last;
@@ -27,7 +32,7 @@ void qs(int *s_arr,int first,int last)
 }
 
 int main() {
-    int c[] = {1, 5, 3,6,2,4,8,10,23,13};
+    int c[] = {1, 5, 3,6,2,4,8,10,23};
     int i = 0;
     int j = 0;
     int k;
