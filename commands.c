@@ -12,17 +12,20 @@ void sa(t_stack **a)
     (*a) = b;
     tmp->next = b->next;
     (*a)->next = tmp;
+    ft_putstr("sa\n");
 }
 
 void sb(t_stack **a)
 {
     sa(a);
+    ft_putstr("sb\n");
 }
 
 void ss(t_stack **a,t_stack **b)
 {
     sa(a);
     sb(b);
+    ft_putstr("ss\n");
 }
 
 void ra(t_stack **head)
@@ -39,17 +42,20 @@ void ra(t_stack **head)
     (*head) = (*head)->next;
     first->next = NULL;
     last->next = first;
+    ft_putstr("ra\n");
 }
 
 void rb(t_stack **head)
 {
     ra(head);
+    ft_putstr("rb\n");
 }
 
 void rr(t_stack **a,t_stack **b)
 {
     ra(a);
     rb(b);
+    ft_putstr("rr\n");
 }
 
 void rra(t_stack **head)
@@ -69,17 +75,20 @@ void rra(t_stack **head)
     ptr->next = (*head);
     *head = ptr;
     last->next = NULL;
+    ft_putstr("rra\n");
 }
 
 void rrb(t_stack **head)
 {
     rra(head);
+    ft_putstr("rrb\n");
 }
 
 void rrr(t_stack **a, t_stack **b)
 {
     rra(a);
     rra(b);
+    ft_putstr("rrr\n");
 }
 
 void pa(t_stack **a,t_stack **b)
@@ -92,6 +101,7 @@ void pa(t_stack **a,t_stack **b)
     (*b)->next = *a;
     *a = *b;
     *b = second;
+    ft_putstr("pa\n");
 }
 
 void pb(t_stack **a,t_stack **b)
@@ -104,5 +114,6 @@ void pb(t_stack **a,t_stack **b)
     (*a)->next = *b;
     *b = *a;
     *a = second;
+    ft_putstr("pb\n");
 }
 

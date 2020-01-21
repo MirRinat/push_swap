@@ -11,6 +11,7 @@ typedef struct s_stack
     struct s_stack *next;
 }               t_stack;
 
+//create stack
 void print_list(t_stack *n);
 void reverse_stack(t_stack **head);
 void append_stack(t_stack **head, int number);
@@ -30,6 +31,9 @@ void rrb(t_stack **head);
 void rrr(t_stack **a, t_stack **b);
 void pa(t_stack **a,t_stack **b);
 void pb(t_stack **a,t_stack **b);
+
+//sorting
+void sort_three(t_stack **a);
 
 
 #endif //PUSH_SWAP_PUSH_SWAP_H
