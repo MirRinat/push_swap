@@ -18,6 +18,9 @@ void append_stack(t_stack **head, int number);
 void push_stack(t_stack **head,int number);
 t_stack *create_stack(t_stack **head,char **argv,int argc);
 
+//lst_commands
+int lst_count(t_stack **a);
+
 //commands
 
 void sa(t_stack **head);
@@ -34,6 +37,9 @@ void pb(t_stack **a,t_stack **b);
 
 //sorting
 void sort_three(t_stack **a);
+void sort_five(t_stack **a,t_stack **b);
+int if_sorted(t_stack **a);
+
 
 
 #endif //PUSH_SWAP_PUSH_SWAP_H
