@@ -45,14 +45,15 @@ int main(int argc, char **argv)
     }
     printf("stack_a\n");
 	print_list(a);
-//    if (argc == 4)
+//    if (argc <= 3)
 //        sort_three(&a);
 //    printf("count_lst a =%d\n",lst_count(&a));
-//    sort_five(&a,&b);
-    if (if_sorted(&a))
-        printf("stack is sorted\n");
-    else
-        printf("stack is not sorted\n");
+    if (argc <= 7)
+        sort_five(&a,&b);
+//    if (if_sorted(&a))
+//        printf("stack is sorted\n");
+//    else
+//        printf("stack is not sorted\n");
     print_list(a);
 
     printf("__________________\n");
