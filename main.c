@@ -43,17 +43,21 @@ int main(int argc, char **argv)
         a = create_stack(&head,argv,argc);
 //        b = create_stack(&head,argv,argc);
     }
+    if (if_sorted(&a))
+        return (0);
     printf("stack_a\n");
 	print_list(a);
 //    if (argc <= 3)
 //        sort_three(&a);
 //    printf("count_lst a =%d\n",lst_count(&a));
-    if (argc <= 7)
+    if (argc >=4 && argc <= 7)
         sort_five(&a,&b);
 //    if (if_sorted(&a))
 //        printf("stack is sorted\n");
 //    else
 //        printf("stack is not sorted\n");
+//    printf("max stack = %d\n",max_of_stack(&a));
+//    printf("min stack = %d\n",min_of_stack(&a));
     print_list(a);
 
     printf("__________________\n");
