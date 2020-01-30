@@ -1,23 +1,23 @@
 #include "push_swap.h"
 
-t_stack *get_last(t_stack **head)
-{
-    t_stack *last;
-
-    last = *head;
-    if (*head == NULL)
-        return(NULL);
-    while (last->next)
-    {
-        last = last->next;
-    }
-    return (last);
-}
-
-t_stack *get_top(t_stack **head)
-{
-    return (*head);
-}
+//t_stack *get_last(t_stack **head)
+//{
+//    t_stack *last;
+//
+//    last = *head;
+//    if (*head == NULL)
+//        return(NULL);
+//    while (last->next)
+//    {
+//        last = last->next;
+//    }
+//    return (last);
+//}
+//
+//t_stack *get_top(t_stack **head)
+//{
+//    return (*head);
+//}
 
 
 int max_of_stack(t_stack **head)
@@ -74,21 +74,24 @@ int find_short_path(t_stack **head,int pos)
 {
     int len = lst_count(&*head);
     int step;
-
-    step = len - pos;
-    if (step < (lst_count(&*head) / 2))
+    int i;
+    int step2;
+    step = pos;
+    step2 = len - pos;
+    i = step;
+    if (pos < len / 2)
         while(step)
         {
             ra(&*head);
             step--;
         }
-    if (step >= (lst_count(&*head) / 2))
-        while(step)
+    if (pos >= len / 2)
+        while(step2)
         {
             rra(&*head);
-            step--;
+            step2--;
         }
-    return (step);
+    return (i);
 }
 
 int		sort_a_big_or_small(t_stack **a, t_stack **b)
@@ -137,11 +140,28 @@ int find_pos_in_a(t_stack **a,t_stack **b)
     return (pos);
 }
 
+int		pos_finder_test(t_stack *a, int small)
+{
+    int	i;
+    int	pos;
+
+    i = 0;
+    pos = 0;
+    while (a)
+    {
+        if (small == a->nb)
+            pos = i;
+        i++;
+        a = a->next;
+    }
+    return (pos);
+}
 
 void sort_five(t_stack **a,t_stack **b) {
 
     int pos;
     int min;
+    int  i = 0;
 
     pos = 0;
     min = 0;
@@ -150,9 +170,12 @@ void sort_five(t_stack **a,t_stack **b) {
     sort_three(&*a);
     while (lst_count(&*b))
     {
+        pos = 0;
         pos = find_pos_in_a(a,b);
         find_short_path(a,pos);
         pa(&*a,&*b);
     }
-
+    min = min_of_stack(a);
+    pos = pos_finder_test(*a,min);
+    i = find_short_path(a,pos);
 }
