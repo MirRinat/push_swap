@@ -94,7 +94,7 @@ int find_short_path(t_stack **head,int pos)
     return (i);
 }
 
-int		sort_a_big_or_small(t_stack **a, t_stack **b)
+int		if_not_found(t_stack **a, t_stack **b)
 {
     long	b_largest;
     long	b_smallest;
@@ -121,10 +121,7 @@ int find_pos_in_a(t_stack **a,t_stack **b)
     if (*b)
     {
         if ((*b)->nb > max_of_stack(a) || (*b)->nb < min_of_stack(a))
-        {
-            sort_a_big_or_small(b, a);
-
-        }
+            if_not_found(b, a);
         else
         {
             while(temp)
@@ -170,7 +167,6 @@ void sort_five(t_stack **a,t_stack **b) {
     sort_three(&*a);
     while (lst_count(&*b))
     {
-        pos = 0;
         pos = find_pos_in_a(a,b);
         find_short_path(a,pos);
         pa(&*a,&*b);
