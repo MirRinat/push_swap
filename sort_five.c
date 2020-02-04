@@ -70,15 +70,14 @@ int count_step(t_stack **head,int data)
     return (step);
 }
 
-int find_short_path(t_stack **head,int pos)
+void  baraban(t_stack **head,int pos)
 {
     int len = lst_count(&*head);
     int step;
-    int i;
     int step2;
+
     step = pos;
     step2 = len - pos;
-    i = step;
     if (pos < len / 2)
         while(step)
         {
@@ -91,23 +90,19 @@ int find_short_path(t_stack **head,int pos)
             rra(&*head);
             step2--;
         }
-    return (i);
 }
 
-int		if_not_found(t_stack **a, t_stack **b)
+void	min_max(t_stack **a, t_stack **b)
 {
-    long	b_largest;
-    long	b_smallest;
-    int		b_small_pos;
-    int		i;
+    long	a_largest;
+    long	a_smallest;
+    int		a_small_pos;
 
-    i = 0;
-    b_largest = max_of_stack(&*b);
-    b_smallest = min_of_stack(&*b);
-    b_small_pos = count_step(&*b, b_smallest);
-    if ((*a)->nb < b_smallest || (*a)->nb > b_largest)
-        i += find_short_path(b, b_small_pos);
-    return (i);
+    a_largest = max_of_stack(&*a);
+    a_smallest = min_of_stack(&*a);
+    a_small_pos = count_step(&*a, a_smallest);
+    if ((*b)->nb < a_smallest || (*b)->nb > a_largest)
+        baraban(a, a_small_pos);
 }
 
 
@@ -121,7 +116,7 @@ int find_pos_in_a(t_stack **a,t_stack **b)
     if (*b)
     {
         if ((*b)->nb > max_of_stack(a) || (*b)->nb < min_of_stack(a))
-            if_not_found(b, a);
+            min_max(a, b);
         else
         {
             while(temp)
@@ -133,45 +128,25 @@ int find_pos_in_a(t_stack **a,t_stack **b)
             }
         }
     }
-
     return (pos);
 }
 
-int		pos_finder_test(t_stack *a, int small)
-{
-    int	i;
-    int	pos;
-
-    i = 0;
-    pos = 0;
-    while (a)
-    {
-        if (small == a->nb)
-            pos = i;
-        i++;
-        a = a->next;
-    }
-    return (pos);
-}
 
 void sort_five(t_stack **a,t_stack **b) {
 
     int pos;
     int min;
-    int  i = 0;
 
-    pos = 0;
-    min = 0;
     while (lst_count(&*a) > 3)
         pb(a, b);
     sort_three(&*a);
     while (lst_count(&*b))
     {
         pos = find_pos_in_a(a,b);
-        find_short_path(a,pos);
+        baraban(a,pos);
         pa(&*a,&*b);
     }
     min = min_of_stack(a);
-    pos = pos_finder_test(*a,min);
-    i = find_short_path(a,pos);
+    pos = count_step(&*a,min);
+    baraban(a,pos);
 }

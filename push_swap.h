@@ -43,4 +43,10 @@ int max_of_stack(t_stack **head);
 int min_of_stack(t_stack **head);
 
 
+void  baraban(t_stack **head,int pos);
+int count_step(t_stack **head,int data);
+int min_of_stack(t_stack **head);
+int max_of_stack(t_stack **head);
+void insert_sort(t_stack **a,t_stack **b);
+
 #endif //PUSH_SWAP_PUSH_SWAP_H
