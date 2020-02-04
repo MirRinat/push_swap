@@ -54,7 +54,7 @@ int main(int argc, char **argv)
         sort_three(&a);
     if (argc >= 4 && argc <= 6)
         sort_five(&a,&b);
-    if (argc >=7 && argc < 20)
+    else
         insert_sort(&a,&b);
     print_list(a);
     free(head);

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-gcc main.c commands.c sort_three.c create_stack.c sort_five.c sort_twenty.c libft/libft.a
+gcc main.c commands.c sort_three.c create_stack.c sort_five.c insert_sort.c libft/libft.a -o push_swap
 
