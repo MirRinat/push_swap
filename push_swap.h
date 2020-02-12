@@ -17,6 +17,7 @@ void reverse_stack(t_stack **head);
 void append_stack(t_stack **head, int number);
 void push_stack(t_stack **head,int number);
 t_stack *create_stack(t_stack **head,char **argv,int argc);
+long long			ft_atoi_ps(const char *str);
 
 //lst_commands
 int lst_count(t_stack **a);

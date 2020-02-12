@@ -43,7 +43,6 @@ int main(int argc, char **argv)
         a = create_stack(&head,argv,argc);
     if (if_sorted(&a))
         return (0);
-    printf("stack_a\n");
 	print_list(a);
 	if (if_sorted(&a))
     {
