@@ -8,6 +8,7 @@
 typedef struct s_stack
 {
     int nb;
+    int sorted;
     struct s_stack *next;
 }               t_stack;
 
@@ -40,6 +41,7 @@ void pb(t_stack **a,t_stack **b);
 void sort_three(t_stack **a);
 void sort_five(t_stack **a,t_stack **b);
 int if_sorted(t_stack **a);
+int if_reverse_sorted(t_stack **b);
 int max_of_stack(t_stack **head);
 int min_of_stack(t_stack **head);
 
@@ -49,5 +51,6 @@ int count_step(t_stack **head,int data);
 int min_of_stack(t_stack **head);
 int max_of_stack(t_stack **head);
 void insert_sort(t_stack **a,t_stack **b);
+void quick_sort(t_stack **a, t_stack **b);
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

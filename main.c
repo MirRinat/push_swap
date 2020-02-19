@@ -19,6 +19,21 @@ int lst_count(t_stack **a)
     return (count);
 }
 
+int if_reverse_sorted(t_stack **b)
+{
+    t_stack *ptr;
+
+    ptr = *b;
+    while(ptr->next)
+    {
+        if (ptr->nb < ptr->next->nb)
+            return (0);
+        ptr = ptr->next;
+    }
+    return (1);
+}
+
+
 int if_sorted(t_stack **a)
 {
     t_stack *ptr;
@@ -49,12 +64,14 @@ int main(int argc, char **argv)
         printf("stack is sorted\n");
         return (0);
     }
-    if (argc <= 3)
+    if (argc <= 4)
         sort_three(&a);
-    if (argc >= 4 && argc <= 6)
+    else if (argc > 4 && argc < 7)
         sort_five(&a,&b);
-    else
+    else if (argc >= 8 && argc < 25)
         insert_sort(&a,&b);
+    else
+        quick_sort(&a, &b);
     print_list(a);
     free(head);
     return (0);
