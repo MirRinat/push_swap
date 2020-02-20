@@ -8,7 +8,6 @@
 typedef struct s_stack
 {
     int nb;
-    int sorted;
     struct s_stack *next;
 }               t_stack;
 
@@ -52,5 +51,6 @@ int min_of_stack(t_stack **head);
 int max_of_stack(t_stack **head);
 void insert_sort(t_stack **a,t_stack **b);
 void quick_sort(t_stack **a, t_stack **b);
+int		sort_hundred(t_stack **a, t_stack **b, int i);
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

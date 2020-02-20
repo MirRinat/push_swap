@@ -54,6 +54,7 @@ int main(int argc, char **argv)
     t_stack *b;
     t_stack *head = NULL;
 
+    int i = 0;
     if (argc >= 2)
         a = create_stack(&head,argv,argc);
     if (if_sorted(&a))
@@ -68,10 +69,10 @@ int main(int argc, char **argv)
         sort_three(&a);
     else if (argc > 4 && argc < 7)
         sort_five(&a,&b);
-    else if (argc >= 8 && argc < 25)
-        insert_sort(&a,&b);
-    else
-        quick_sort(&a, &b);
+//    else if (argc >= 8 && argc < 50)
+//        insert_sort(&a,&b);
+    else if (argc < 200)
+        i = sort_hundred(&a,&b,i);
     print_list(a);
     free(head);
     return (0);

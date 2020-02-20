@@ -106,6 +106,7 @@ void	min_max(t_stack **a, t_stack **b)
 }
 
 
+
 int find_pos_in_a(t_stack **a,t_stack **b)
 {
     int pos;
