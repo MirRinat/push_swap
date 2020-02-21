@@ -52,37 +52,28 @@ int main(int argc, char **argv)
 {
     t_stack *a;
     t_stack *b;
+    int count_a;
     t_stack *head = NULL;
 
-    int i = 0;
+    count_a = 0;
     if (argc >= 2)
-    {
         a = create_stack(&head,argv,argc);
-//        b = create_stack(&head,argv,argc);
-//        reverse_stack(&b);
-    }
-//    print_list(a);
-//    print_list(b);
-//    rrr(&a,&b);
-//    print_list(a);
-//    print_list(b);
-//    if (if_sorted(&a))
-//        return (0);
-//	print_list(a);
 	if (if_sorted(&a))
     {
         printf("stack is sorted\n");
         return (0);
     }
-    if (argc <= 4)
+	count_a = lst_count(&a);
+    print_list(a);
+    if (count_a <= 3)
         sort_three(&a);
-    else if (argc > 4 && argc < 7)
-        sort_five(&a,&b);
-    else if (argc >= 8 && argc < 50)
-        insert_sort(&a,&b);
-    else //if (argc < 200)
-        i = sort_hundred(&a,&b,i);
-//    print_list(a);
+//    else if (count_a >= 4 && count_a <= 7)
+//        sort_five(&a,&b);
+//    else if (count_a >= 8 && count_a < 50)
+//        insert_sort(&a,&b);
+//    else if (count_a < 200)
+    sort_hundred(&a,&b);
+    print_list(a);
     free(head);
     return (0);
 }

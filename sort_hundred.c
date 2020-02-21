@@ -46,63 +46,44 @@ void	min_max_b(t_stack **a, t_stack **b)
 int find_pos_in_b(t_stack **a,t_stack **b)
 {
     int pos;
-    t_stack *temp;
+    t_stack *ptr;
 
     pos = 0;
-    temp = *b;
-    if (*b)
+    ptr = *b;
+    while(ptr && ptr->next)
     {
-            while(temp)
-            {
-                pos++;
-                if(temp->next && (*a)->nb > temp->nb && (*a)->nb < temp->next->nb)
-                    return (pos);
-                temp = temp->next;
-            }
-        }
+        pos++;
+        if ((*a)->nb > ptr->nb && (*a)->nb < ptr->next->nb)
+            return (pos);
+        ptr = ptr->next;
+    }
     return (pos);
 }
 
 
 
-int		rb_or_rrb_one_hun_two(t_stack **a, t_stack **b, int pos, int tot)
+void		rb_or_rrb_one_hun_two(t_stack **a, t_stack **b, int pos, int tot)
 {
-    int i;
     int biggest;
 
-    i = 0;
     biggest = max_of_stack(&*b);
     while (tot > pos)
     {
         rrb(b);
-//        write(1, "rrb\n", 4);
         pos++;
-        i++;
     }
     if ((*b)->nb == biggest)
-    {
         pa(a, b);
-//        write(1, "pa\n", 3);
-    }
-    return (i);
 }
 
-int		rb_or_rrb_one_hun_one(t_stack **a, t_stack **b, int pos, int i)
+void		rb_or_rrb_one_hun_one(t_stack **a, t_stack **b, int pos)
 {
     while (pos > 0)
     {
         rb(b);
-//        write(1, "rb\n", 3);
         pos--;
-        i++;
     }
-    if (pos == 0)
-    {
-        pa(a, b);
-//        write(1, "pa\n", 3);
-        i++;
-    }
-    return (i);
+    pa(a, b);
 }
 
 int		rb_or_rrb_one_hundered(t_stack **a, t_stack **b, int tot)
@@ -121,9 +102,9 @@ int		rb_or_rrb_one_hundered(t_stack **a, t_stack **b, int tot)
         biggest = max_of_stack(&*b);
         pos = count_step(&*b,biggest);
         if (pos <= half)
-            i += rb_or_rrb_one_hun_one(a, b, pos, i);
+            rb_or_rrb_one_hun_one(a, b, pos);
         if (pos > half)
-            i += rb_or_rrb_one_hun_two(a, b, pos, tot);
+           rb_or_rrb_one_hun_two(a, b, pos, tot);
     }
     return (i);
 }
@@ -140,13 +121,10 @@ int		range(t_stack *a, int local_max)
     return (0);
 }
 
-//исправить расчет позиции
 int		range_pos_funct(t_stack *a, int local_max)
 {
-    int pos_num;
     int i;
 
-    pos_num = 0;
     i = -1;
     while (a)
     {
@@ -158,32 +136,22 @@ int		range_pos_funct(t_stack *a, int local_max)
     return (i);
 }
 
-int		before_push_b(t_stack **a, t_stack **b)
+void    before_push_b(t_stack **a, t_stack **b)
 {
     int pos;
-    int i;
 
-    i = 0;
     pos = find_pos_in_b(a, b);
     baraban_b(b, pos);
     pb(a, b);
-    return (i);
 }
 
-int		if_find_less_chunk(t_stack **a, t_stack **b, int range_pos, int chunk)
+void    if_find_less_chunk(t_stack **a, t_stack **b, int chunk)
 {
-    int len;
-    int local_max;
-    int i;
-    int pos;
+    int range_pos;
 
-    len = lst_count(&*a);
-    local_max = len / 5;
-    i = 0;
-    pos = 0;
     while (range(*a, chunk) == 1)
     {
-        range_pos = range_pos_funct(*a, local_max);
+        range_pos = range_pos_funct(*a, chunk);
         if ((*a) && !((*a)->nb <= chunk))
             baraban(a, range_pos);
         if ((*a) && (*a)->nb <= chunk)
@@ -194,37 +162,28 @@ int		if_find_less_chunk(t_stack **a, t_stack **b, int range_pos, int chunk)
         if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
             min_max_b(a, b);
         if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
-            i += before_push_b(a, b);
+            before_push_b(a, b);
     }
-    return (i);
 }
 
-int		sort_hundred(t_stack **a, t_stack **b, int i)
+void    sort_hundred(t_stack **a, t_stack **b)
 {
-    int local_max;
-    int	tot;
-    int j;
-    int tot_div_chunk;
-    int range_pos;
+    int interval;
+    int	count_elem;
+    int i;
+    int chunk;
 
-    j = 0;
-    tot = lst_count(&*a);
+    i = 1;
+    count_elem = lst_count(&*a);
     while (*a)
     {
-        j++;
-        local_max = tot / 5;
-        tot_div_chunk = local_max * j;
-        range_pos = range_pos_funct(*a, local_max);
-        if (range(*a, tot_div_chunk) == 1)
-            i += if_find_less_chunk(a, b, range_pos, tot_div_chunk);
-//        printf("stack A = ");
-//        print_list(*a);
-//        printf("stack B = ");
-//        print_list(*b);
+        interval = count_elem / 5;
+        chunk = interval * i++;
+        if (range(*a, chunk))
+           if_find_less_chunk(a, b,chunk);
     }
     if (!*a)
-        i += rb_or_rrb_one_hundered(a, b, tot);
-    return (i);
+        rb_or_rrb_one_hundered(a, b, count_elem);
 }
 
 
