@@ -56,10 +56,19 @@ int main(int argc, char **argv)
 
     int i = 0;
     if (argc >= 2)
+    {
         a = create_stack(&head,argv,argc);
-    if (if_sorted(&a))
-        return (0);
-	print_list(a);
+//        b = create_stack(&head,argv,argc);
+//        reverse_stack(&b);
+    }
+//    print_list(a);
+//    print_list(b);
+//    rrr(&a,&b);
+//    print_list(a);
+//    print_list(b);
+//    if (if_sorted(&a))
+//        return (0);
+//	print_list(a);
 	if (if_sorted(&a))
     {
         printf("stack is sorted\n");
@@ -69,11 +78,11 @@ int main(int argc, char **argv)
         sort_three(&a);
     else if (argc > 4 && argc < 7)
         sort_five(&a,&b);
-//    else if (argc >= 8 && argc < 50)
-//        insert_sort(&a,&b);
-    else if (argc < 200)
+    else if (argc >= 8 && argc < 50)
+        insert_sort(&a,&b);
+    else //if (argc < 200)
         i = sort_hundred(&a,&b,i);
-    print_list(a);
+//    print_list(a);
     free(head);
     return (0);
 }

@@ -1,5 +1,76 @@
 #include "push_swap.h"
 
+//functions fot ss,rr,rrr
+
+void sa_nw(t_stack **a)
+{
+    t_stack *b;
+    t_stack *tmp;
+
+    if (*a == NULL)
+        return;
+    b = (*a)->next;
+    tmp = *a;
+    (*a) = b;
+    tmp->next = b->next;
+    (*a)->next = tmp;
+}
+
+void sb_nw(t_stack **a)
+{
+    sa_nw(a);
+}
+
+
+void ra_nw(t_stack **head)
+{
+    t_stack *first;
+    t_stack *last;
+
+    if (*head == NULL)
+        return;
+    first = *head;
+    last = *head;
+    while (last->next != NULL)
+        last = last->next;
+    (*head) = (*head)->next;
+    first->next = NULL;
+    last->next = first;
+}
+
+void rb_nw(t_stack **head)
+{
+    ra_nw(head);
+}
+
+void rra_nw(t_stack **head)
+{
+    t_stack *last;
+    t_stack *ptr;
+
+    if (*head == NULL)
+        return;
+    ptr = *head;
+    while (ptr->next != NULL)
+    {
+        last = ptr;
+        ptr = ptr->next;
+    }
+    last->next = NULL;
+    ptr->next = (*head);
+    *head = ptr;
+    last->next = NULL;
+}
+
+void rrb_nw(t_stack **head)
+{
+    rra_nw(head);
+}
+
+//##############################
+//functions with write
+
+
 void sa(t_stack **a)
 {
     t_stack *b;
@@ -17,14 +88,14 @@ void sa(t_stack **a)
 
 void sb(t_stack **a)
 {
-    sa(a);
+    sa_nw(a);
     ft_putstr("sb\n");
 }
 
 void ss(t_stack **a,t_stack **b)
 {
-    sa(a);
-    sb(b);
+    sa_nw(a);
+    sb_nw(b);
     ft_putstr("ss\n");
 }
 
@@ -47,14 +118,14 @@ void ra(t_stack **head)
 
 void rb(t_stack **head)
 {
-    ra(head);
+    ra_nw(head);
     ft_putstr("rb\n");
 }
 
 void rr(t_stack **a,t_stack **b)
 {
-    ra(a);
-    rb(b);
+    ra_nw(a);
+    rb_nw(b);
     ft_putstr("rr\n");
 }
 
@@ -80,14 +151,14 @@ void rra(t_stack **head)
 
 void rrb(t_stack **head)
 {
-    rra(head);
+    rra_nw(head);
     ft_putstr("rrb\n");
 }
 
 void rrr(t_stack **a, t_stack **b)
 {
-    rra(a);
-    rra(b);
+    rra_nw(a);
+    rrb_nw(b);
     ft_putstr("rrr\n");
 }
 

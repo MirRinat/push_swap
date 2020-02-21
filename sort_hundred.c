@@ -140,7 +140,7 @@ int		range(t_stack *a, int local_max)
     return (0);
 }
 
-
+//исправить расчет позиции
 int		range_pos_funct(t_stack *a, int local_max)
 {
     int pos_num;
@@ -152,9 +152,7 @@ int		range_pos_funct(t_stack *a, int local_max)
     {
         i++;
         if (a->nb <= local_max)
-        {
             return (i);
-        }
         a = a->next;
     }
     return (i);
@@ -172,15 +170,15 @@ int		before_push_b(t_stack **a, t_stack **b)
     return (i);
 }
 
-int		a_handle_while_range(t_stack **a, t_stack **b, int range_pos, int chunk)
+int		if_find_less_chunk(t_stack **a, t_stack **b, int range_pos, int chunk)
 {
-    int tot;
+    int len;
     int local_max;
     int i;
     int pos;
 
-    tot = lst_count(&*a);
-    local_max = tot / 5;
+    len = lst_count(&*a);
+    local_max = len / 5;
     i = 0;
     pos = 0;
     while (range(*a, chunk) == 1)
@@ -218,7 +216,11 @@ int		sort_hundred(t_stack **a, t_stack **b, int i)
         tot_div_chunk = local_max * j;
         range_pos = range_pos_funct(*a, local_max);
         if (range(*a, tot_div_chunk) == 1)
-            i += a_handle_while_range(a, b, range_pos, tot_div_chunk);
+            i += if_find_less_chunk(a, b, range_pos, tot_div_chunk);
+//        printf("stack A = ");
+//        print_list(*a);
+//        printf("stack B = ");
+//        print_list(*b);
     }
     if (!*a)
         i += rb_or_rrb_one_hundered(a, b, tot);
