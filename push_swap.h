@@ -4,6 +4,9 @@
 #define PUSH_SWAP_PUSH_SWAP_H
 
 #include "./libft/libft.h"
+#define	INTERVAL_HUNDRED	5
+#define INTERVAL_FIVE_HUNDRED	14
+#define INTERVAL_MORE	20
 
 typedef struct s_stack
 {
@@ -51,6 +54,6 @@ int min_of_stack(t_stack **head);
 int max_of_stack(t_stack **head);
 void insert_sort(t_stack **a,t_stack **b);
 void quick_sort(t_stack **a, t_stack **b);
-void    sort_hundred(t_stack **a, t_stack **b);
+void    sort(t_stack **a, t_stack **b,int count_a);
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

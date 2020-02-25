@@ -55,25 +55,24 @@ int main(int argc, char **argv)
     int count_a;
     t_stack *head = NULL;
 
-    count_a = 0;
     if (argc >= 2)
         a = create_stack(&head,argv,argc);
 	if (if_sorted(&a))
     {
-        printf("stack is sorted\n");
+//        printf("stack is sorted\n");
         return (0);
     }
 	count_a = lst_count(&a);
-    print_list(a);
+//    print_list(a);
     if (count_a <= 3)
         sort_three(&a);
-//    else if (count_a >= 4 && count_a <= 7)
-//        sort_five(&a,&b);
-//    else if (count_a >= 8 && count_a < 50)
-//        insert_sort(&a,&b);
-//    else if (count_a < 200)
-    sort_hundred(&a,&b);
-    print_list(a);
+    else if (count_a >= 4 && count_a <= 7)
+        sort_five(&a,&b);
+    else if (count_a >= 8 && count_a < 50)
+        insert_sort(&a,&b);
+    else
+    	sort(&a,&b,count_a);
+//    print_list(a);
     free(head);
     return (0);
 }
