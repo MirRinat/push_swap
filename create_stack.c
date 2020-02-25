@@ -35,11 +35,24 @@ void reverse_stack(t_stack **head)
 
 
 
+
+void push_stack(t_stack **head,int number)
+{
+    t_stack *new;
+
+    new = (t_stack *)malloc(sizeof(t_stack));
+    new->nb = number;
+    new->next = (*head);
+    (*head) = new;
+}
+
 void append_stack(t_stack **head, int number)
 {
-    t_stack *new  = (t_stack *)malloc(sizeof(t_stack));
-    t_stack *last = *head;
+    t_stack *new;
+    t_stack *last;
 
+    if (!(new = (t_stack *)malloc(sizeof(t_stack))))
+        return;
     new->nb = number;
     new->next = NULL;
     if (*head == NULL)
@@ -47,32 +60,23 @@ void append_stack(t_stack **head, int number)
         *head = new;
         return;
     }
-    while(last->next != NULL)
+    last = *head;
+    while(last->next)
         last = last->next;
     last->next = new;
 }
 
 
-
-void push_stack(t_stack **head,int number)
-{
-    t_stack *new;
-
-    new = (t_stack *)malloc(sizeof(t_stack));
-
-    new->nb = number;
-    new->next = (*head);
-    (*head) = new;
-}
-
 t_stack *create_stack(t_stack **head,char **argv,int argc)
 {
     t_stack *a;
     int i;
-    int nb;
 
-    i = 1;
-    a = *head;
+    if (!(a = (t_stack *)malloc(sizeof(t_stack))))
+        return(0);
+    a->nb = ft_atoi(argv[1]);
+    a->next = NULL;
+    i = 2;
     while(i < argc)
     {
         append_stack(&a,ft_atoi(argv[i]));

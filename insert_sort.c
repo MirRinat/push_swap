@@ -7,7 +7,7 @@ void push_min(t_stack **a,t_stack **b)
 
     min = min_of_stack(&*a);
     pos_min = count_step(&*a,min);
-    baraban(&*a,pos_min);
+    baraban_a(&*a,pos_min);
     pb(&*a,&*b);
 }
 

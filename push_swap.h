@@ -5,7 +5,7 @@
 
 #include "./libft/libft.h"
 #define	INTERVAL_HUNDRED	5
-#define INTERVAL_FIVE_HUNDRED	14
+#define INTERVAL_FIVE_HUNDRED	15
 #define INTERVAL_MORE	20
 
 typedef struct s_stack
@@ -17,7 +17,7 @@ typedef struct s_stack
 //create stack
 void print_list(t_stack *n);
 void reverse_stack(t_stack **head);
-void append_stack(t_stack **head, int number);
+//void append_stack(t_stack *head, int number);
 void push_stack(t_stack **head,int number);
 t_stack *create_stack(t_stack **head,char **argv,int argc);
 long long			ft_atoi_ps(const char *str);
@@ -40,6 +40,7 @@ void pa(t_stack **a,t_stack **b);
 void pb(t_stack **a,t_stack **b);
 
 //sorting
+void sort_two(t_stack **a);
 void sort_three(t_stack **a);
 void sort_five(t_stack **a,t_stack **b);
 int if_sorted(t_stack **a);
@@ -48,12 +49,12 @@ int max_of_stack(t_stack **head);
 int min_of_stack(t_stack **head);
 
 
-void  baraban(t_stack **head,int pos);
+void  baraban_a(t_stack **head,int pos);
 int count_step(t_stack **head,int data);
 int min_of_stack(t_stack **head);
 int max_of_stack(t_stack **head);
 void insert_sort(t_stack **a,t_stack **b);
 void quick_sort(t_stack **a, t_stack **b);
-void    sort(t_stack **a, t_stack **b,int count_a);
+void    sorting(t_stack **a, t_stack **b,int count_a);
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

@@ -22,16 +22,16 @@ void  baraban_b(t_stack **head,int pos)
 
 void	min_max_b(t_stack **a, t_stack **b)
 {
-    long	b_largest;
-    long	b_smallest;
-    int		b_small_pos;
-    int 	b_largest_pos;
+    long	max_b;
+    long	min_b;
+    int		min_b_pos;
+    int 	max_b_pos;
 
-    b_largest = max_of_stack(&*b);
-    b_smallest = min_of_stack(&*b);
-    b_small_pos = count_step(&*b, b_smallest);
-	b_largest_pos = count_step(&*b, b_largest);
-	baraban_b(b, b_largest_pos);
+    max_b = max_of_stack(&*b);
+    min_b = min_of_stack(&*b);
+    min_b_pos = count_step(&*b, min_b);
+    max_b_pos = count_step(&*b, max_b);
+	baraban_b(b, max_b_pos);
 	pb(a,b);
 }
 
@@ -53,34 +53,23 @@ int find_pos_in_b(t_stack **a,t_stack **b)
     return (pos);
 }
 
-void		rb_or_rrb_one_hundered(t_stack **a, t_stack **b)
+void		before_push_a(t_stack **a, t_stack **b)
 {
     int	pos;
     int biggest;
-    int tot;
 
     while (*b)
     {
-        tot = lst_count(&*b);
         biggest = max_of_stack(&*b);
         pos = count_step(&*b,biggest);
-        if (pos < tot / 2)
-		{
-        	while (pos-- > 0)
-				rb(b);
-        	pa(a,b);
-		}
-        if (pos >= tot / 2)
-		{
-        	while(pos++ < tot)
-				rrb(b);
-			pa(a,b);
-		}
+        if (lst_count(&*b) > 1)
+            baraban_b(&*b,pos);
+        pa(a,b);
     }
 }
 
 
-int		range(t_stack *a, int local_max)
+int		if_find_less_chunk(t_stack *a, int local_max)
 {
     while (a)
     {
@@ -115,15 +104,15 @@ void    before_push_b(t_stack **a, t_stack **b)
     pb(a, b);
 }
 
-void    if_find_less_chunk(t_stack **a, t_stack **b, int chunk)
+void    find_less_chunk(t_stack **a, t_stack **b, int chunk)
 {
     int range_pos;
 
-    while (range(*a, chunk))
+    while (if_find_less_chunk(*a, chunk))
     {
         range_pos = range_pos_funct(*a, chunk);
         if ((*a) && !((*a)->nb <= chunk))
-            baraban(a, range_pos);
+            baraban_a(a, range_pos);
         if ((*a) && (*a)->nb <= chunk && (!(*b) || lst_count(&*b) == 1))
 			pb(a,b);
         if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
@@ -133,15 +122,13 @@ void    if_find_less_chunk(t_stack **a, t_stack **b, int chunk)
     }
 }
 
-void    sort(t_stack **a, t_stack **b, int count_a)
+void    sorting(t_stack **a, t_stack **b, int count_a)
 {
     int interval;
-    int	count_b;
     int i;
     int chunk;
 
     i = 1;
-    count_b = lst_count(&*b);
     while (*a)
     {
     	if (count_a < 200)
@@ -151,11 +138,10 @@ void    sort(t_stack **a, t_stack **b, int count_a)
 		else
 			interval = count_a / INTERVAL_MORE;
         chunk = interval * i++;
-        if (range(*a, chunk))
-           if_find_less_chunk(a, b,chunk);
+        if (if_find_less_chunk(*a, chunk))
+           find_less_chunk(a, b,chunk);
     }
-    if (!*a)
-        rb_or_rrb_one_hundered(a, b);
+    before_push_a(a, b);
 }
 
 

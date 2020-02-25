@@ -1,5 +1,16 @@
 #include "push_swap.h"
 
+void sort_two(t_stack **a)
+{
+    int f;
+    int s;
+
+    f = a[0]->nb;
+    s = a[0]->next->nb;
+    if (s < f)
+        sa(a);
+}
+
 void sort_three(t_stack **a)
 {
     int first;

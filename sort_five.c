@@ -1,24 +1,5 @@
 #include "push_swap.h"
 
-//t_stack *get_last(t_stack **head)
-//{
-//    t_stack *last;
-//
-//    last = *head;
-//    if (*head == NULL)
-//        return(NULL);
-//    while (last->next)
-//    {
-//        last = last->next;
-//    }
-//    return (last);
-//}
-//
-//t_stack *get_top(t_stack **head)
-//{
-//    return (*head);
-//}
-
 
 int max_of_stack(t_stack **head)
 {
@@ -70,7 +51,7 @@ int count_step(t_stack **head,int data)
     return (step);
 }
 
-void  baraban(t_stack **head,int pos)
+void  baraban_a(t_stack **head,int pos)
 {
     int len = lst_count(&*head);
     int step;
@@ -92,17 +73,16 @@ void  baraban(t_stack **head,int pos)
         }
 }
 
-void	min_max(t_stack **a, t_stack **b)
+void	min_max_a(t_stack **a, t_stack **b)
 {
-    long	a_largest;
-    long	a_smallest;
-    int		a_small_pos;
+    long	max_a;
+    long	min_a;
+    int		min_a_pos;
 
-    a_largest = max_of_stack(&*a);
-    a_smallest = min_of_stack(&*a);
-    a_small_pos = count_step(&*a, a_smallest);
-    if ((*b)->nb < a_smallest || (*b)->nb > a_largest)
-        baraban(a, a_small_pos);
+    max_a = max_of_stack(&*a);
+    min_a = min_of_stack(&*a);
+    min_a_pos = count_step(&*a, min_a);
+    baraban_a(a, min_a_pos);
 }
 
 
@@ -110,24 +90,16 @@ void	min_max(t_stack **a, t_stack **b)
 int find_pos_in_a(t_stack **a,t_stack **b)
 {
     int pos;
-    t_stack *temp;
+    t_stack *ptr;
 
     pos = 0;
-    temp = *a;
-    if (*b)
+    ptr = *a;
+    while(ptr && ptr->next)
     {
-        if ((*b)->nb > max_of_stack(a) || (*b)->nb < min_of_stack(a))
-            min_max(a, b);
-        else
-        {
-            while(temp)
-            {
-                pos++;
-                if(temp->next && (*b)->nb > temp->nb && (*b)->nb < temp->next->nb)
-                    return (pos);
-                temp = temp->next;
-            }
-        }
+        pos++;
+        if(ptr->next && (*b)->nb > ptr->nb && (*b)->nb < ptr->next->nb)
+            return (pos);
+        ptr = ptr->next;
     }
     return (pos);
 }
@@ -143,11 +115,13 @@ void sort_five(t_stack **a,t_stack **b) {
     sort_three(&*a);
     while (lst_count(&*b))
     {
+        if ((*b)->nb > max_of_stack(a) || (*b)->nb < min_of_stack(a))
+            min_max_a(a, b);
         pos = find_pos_in_a(a,b);
-        baraban(a,pos);
+        baraban_a(a,pos);
         pa(&*a,&*b);
     }
     min = min_of_stack(a);
     pos = count_step(&*a,min);
-    baraban(a,pos);
+    baraban_a(a,pos);
 }
