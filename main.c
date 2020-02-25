@@ -15,7 +15,6 @@ void free_stack(t_stack **head)
     }
 }
 
-
 int lst_count(t_stack **a)
 {
     t_stack *ptr;

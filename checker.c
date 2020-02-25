@@ -48,18 +48,18 @@ long long			ft_atoi_ps(const char *str)
     return (nb);
 }
 
-//t_stack *create_stack_for_checker(int argc, char **argv, t_stack **a)
-//{
-//    t_stack *head;
-//
-//}
-//int main(int argc, char **argv)
-//{
-//    t_stack *a;
-//    t_stack *b;
-//
-//    if (argc < 2)
-//        return (0);
-//
-//
-//}
+int main(int argc, char **argv)
+{
+    t_stack *a;
+    t_stack *b;
+    t_stack *head;
+
+    if (argc < 2)
+        return (0);
+    a = create_stack(head,argc,argv);
+    if (a == NULL)
+        return (0);
+
+
+
+}
