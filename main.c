@@ -32,11 +32,13 @@ int lst_count(t_stack **a)
     return (count);
 }
 
-int if_sorted(t_stack **a)
+int if_sorted(t_stack **a, t_stack **b)
 {
     t_stack *ptr;
 
     ptr = *a;
+    if (*b)
+        return (0);
     while(ptr->next)
     {
         if (ptr->nb > ptr->next->nb)
@@ -47,7 +49,7 @@ int if_sorted(t_stack **a)
 }
 t_stack *sort(t_stack *a, t_stack *b, int count_a)
 {
-    if (if_sorted(&a))
+    if (if_sorted(&a, &b))
         return(NULL);
     if (count_a == 2)
         sort_two(&a);

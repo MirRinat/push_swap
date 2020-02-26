@@ -21,6 +21,11 @@ void sb_nw(t_stack **a)
     sa_nw(a);
 }
 
+void ss_nw(t_stack **a,t_stack **b)
+{
+    sa_nw(a);
+    sb_nw(b);
+}
 
 void ra_nw(t_stack **head)
 {
@@ -41,6 +46,12 @@ void ra_nw(t_stack **head)
 void rb_nw(t_stack **head)
 {
     ra_nw(head);
+}
+
+void rr_nw(t_stack **a,t_stack **b)
+{
+    ra_nw(a);
+    rb_nw(b);
 }
 
 void rra_nw(t_stack **head)
@@ -66,6 +77,39 @@ void rrb_nw(t_stack **head)
 {
     rra_nw(head);
 }
+
+void rrr_nw(t_stack **a,t_stack **b)
+{
+    rra_nw(a);
+    rrb_nw(b);
+}
+
+void pa(t_stack **a,t_stack **b)
+{
+    t_stack *second;
+
+    if (*b == NULL)
+        return;
+    second = (*b)->next;
+    (*b)->next = *a;
+    *a = *b;
+    *b = second;
+}
+
+void pb(t_stack **a,t_stack **b)
+{
+    t_stack *second;
+
+    if (*a == NULL)
+        return;
+    second = (*a)->next;
+    (*a)->next = *b;
+    *b = *a;
+    *a = second;
+}
+
+
+
 
 //##############################
 //functions with write

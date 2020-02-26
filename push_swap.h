@@ -17,16 +17,21 @@ typedef struct s_stack
 //create stack
 void print_list(t_stack *n);
 void reverse_stack(t_stack **head);
-//void append_stack(t_stack *head, int number);
+void append_stack(t_stack *head, int number);
 void push_stack(t_stack **head,int number);
-t_stack *create_stack(t_stack **head,char **argv,int argc);
-long long			ft_atoi_ps(const char *str);
+t_stack     *create_stack(t_stack **head,char **argv,int argc);
+long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b);
+void free_stack(t_stack **head);
+
+
+int					get_next_line(const int fd, char **line);
+
 
 //lst_commands
 int lst_count(t_stack **a);
 
 //commands
-
+//with write
 void sa(t_stack **head);
 void sb(t_stack **a);
 void ss(t_stack **a,t_stack **b);
@@ -39,11 +44,25 @@ void rrr(t_stack **a, t_stack **b);
 void pa(t_stack **a,t_stack **b);
 void pb(t_stack **a,t_stack **b);
 
+
+//without write
+void sa_nw(t_stack **head);
+void sb_nw(t_stack **a);
+void ss_nw(t_stack **a,t_stack **b);
+void ra_nw(t_stack **head);
+void rb_nw(t_stack **head);
+void rr_nw(t_stack **a,t_stack **b);
+void rra_nw(t_stack **head);
+void rrb_nw(t_stack **head);
+void rrr_nw(t_stack **a, t_stack **b);
+void pa_nw(t_stack **a,t_stack **b);
+void pb_nw(t_stack **a,t_stack **b);
+
 //sorting
 void sort_two(t_stack **a);
 void sort_three(t_stack **a);
 void sort_five(t_stack **a,t_stack **b);
-int if_sorted(t_stack **a);
+int if_sorted(t_stack **a, t_stack **b);
 int if_reverse_sorted(t_stack **b);
 int max_of_stack(t_stack **head);
 int min_of_stack(t_stack **head);
