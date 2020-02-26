@@ -24,7 +24,7 @@ int			is_space(char c)
 
 void		print_error(t_stack **a, t_stack **b)
 {
-    ft_putstr("\33[31mError\n");
+    ft_putstr("\33[31mError\033[0m\n");
     free_stack(a);
     free_stack(b);
     exit(1);
@@ -88,10 +88,7 @@ long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
     while (*str != '\0')
     {
         if (*str < 48 || *str > 57)
-        {
-            ft_putstr("Error\n");
-            exit(1);
-        }
+            print_error(a,b);
         nb = nb * 10 + (*str - '0') * r;
         str++;
     }
@@ -104,10 +101,10 @@ void parse_command(t_stack **a, t_stack **b)
 {
     char *line;
 
-    while(get_next_line(0,line))
+    while(get_next_line(0,&line))
     {
         what_command(line,a,b);
-        free(line);
+        free(&line);
     }
     if (!if_sorted(a,b))
         print_ko(a,b);
@@ -124,13 +121,11 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-    a = create_stack(head,argc,argv);
+    a = create_stack(&head,argv,argc);
     if (a == NULL)
         return (0);
-    parse_command(a,b);
+    parse_command(&a,&b);
+    free_stack(&a);
+    free_stack(&b);
     return (0);
-
-
-
-
 }

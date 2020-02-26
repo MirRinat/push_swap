@@ -1,5 +1,36 @@
 #include "push_swap.h"
 
+
+void free_stack(t_stack **head)
+{
+    t_stack *tmp;
+
+    while (*head)
+    {
+        tmp = *head;
+        (*head) = (*head)->next;
+        tmp->nb = 0;
+        tmp->next = NULL;
+        free(tmp);
+    }
+}
+
+int if_sorted(t_stack **a, t_stack **b)
+{
+    t_stack *ptr;
+
+    ptr = *a;
+    if (*b)
+        return (0);
+    while(ptr->next)
+    {
+        if (ptr->nb > ptr->next->nb)
+            return (0);
+        ptr = ptr->next;
+    }
+    return (1);
+}
+
 void print_list(t_stack *n)
 {
     while (n)
@@ -70,6 +101,9 @@ void append_stack(t_stack **head, int number)
 t_stack *create_stack(t_stack **head,char **argv,int argc)
 {
     t_stack *a;
+    t_stack *b;
+
+    b = NULL;
     int i;
 
     i = 1;
@@ -80,7 +114,7 @@ t_stack *create_stack(t_stack **head,char **argv,int argc)
     a->next = NULL;
     while(i < argc)
     {
-        append_stack(&a,ft_atoi_ps(argv[i]));
+        append_stack(&a,ft_atoi_ps(argv[i],&a,&b));
         i++;
     }
     return (a);

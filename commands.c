@@ -84,7 +84,7 @@ void rrr_nw(t_stack **a,t_stack **b)
     rrb_nw(b);
 }
 
-void pa(t_stack **a,t_stack **b)
+void pa_nw(t_stack **a,t_stack **b)
 {
     t_stack *second;
 
@@ -96,7 +96,7 @@ void pa(t_stack **a,t_stack **b)
     *b = second;
 }
 
-void pb(t_stack **a,t_stack **b)
+void pb_nw(t_stack **a,t_stack **b)
 {
     t_stack *second;
 

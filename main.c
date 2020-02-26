@@ -1,19 +1,6 @@
 #include <stdio.h>
 #include "push_swap.h"
 
-void free_stack(t_stack **head)
-{
-    t_stack *tmp;
-
-    while (*head)
-    {
-        tmp = *head;
-        (*head) = (*head)->next;
-        tmp->nb = 0;
-        tmp->next = NULL;
-        free(tmp);
-    }
-}
 
 int lst_count(t_stack **a)
 {

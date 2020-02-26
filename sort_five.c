@@ -85,6 +85,8 @@ void	min_max_a(t_stack **a, t_stack **b)
     baraban_a(a, min_a_pos);
 }
 
+
+
 int find_pos_in_a(t_stack **a,t_stack **b)
 {
     int pos;

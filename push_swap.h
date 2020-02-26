@@ -4,6 +4,7 @@
 #define PUSH_SWAP_PUSH_SWAP_H
 
 #include "./libft/libft.h"
+#include "./get_next_line/get_next_line.h"
 #define	INTERVAL_HUNDRED	5
 #define INTERVAL_FIVE_HUNDRED	15
 #define INTERVAL_MORE	20
@@ -17,7 +18,7 @@ typedef struct s_stack
 //create stack
 void print_list(t_stack *n);
 void reverse_stack(t_stack **head);
-void append_stack(t_stack *head, int number);
+//void append_stack(t_stack *head, int number);
 void push_stack(t_stack **head,int number);
 t_stack     *create_stack(t_stack **head,char **argv,int argc);
 long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b);
