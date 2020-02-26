@@ -153,11 +153,12 @@ t_stack *create_stack(t_stack **head,char **argv,int argc)
 
     if (!(a = (t_stack *)malloc(sizeof(t_stack))))
         return(0);
-    a->nb = ft_atoi(argv[i++]);
+    a->nb = ft_atoi_ps(argv[i++],&a,&b);
     a->next = NULL;
     while(i < argc)
     {
         append_stack(&a,ft_atoi_ps(argv[i],&a,&b));
+        check_duplicate(a,b,ft_atoi_ps(argv[i],&a,&b));
         i++;
     }
     return (a);
