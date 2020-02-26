@@ -17,7 +17,7 @@ void insert_sort(t_stack **a,t_stack **b)
     int len_a = lst_count(&*a);
     while(len_a > 3)
     {
-        if (if_sorted(&*a))
+        if (if_sorted(&*a,&*b))
             break;
         push_min(&*a,&*b);
         len_a--;

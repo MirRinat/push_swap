@@ -24,8 +24,11 @@ t_stack     *create_stack(t_stack **head,char **argv,int argc);
 long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b);
 void free_stack(t_stack **head);
 
-
+//checker
 int					get_next_line(const int fd, char **line);
+void parse_command(t_stack **a, t_stack **b);
+void    more_int(int nb, t_stack **a, t_stack **b);
+void		print_error(t_stack **a, t_stack **b);
 
 
 //lst_commands

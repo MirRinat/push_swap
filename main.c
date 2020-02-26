@@ -2,6 +2,8 @@
 #include "push_swap.h"
 
 
+
+
 int lst_count(t_stack **a)
 {
     t_stack *ptr;
@@ -19,21 +21,7 @@ int lst_count(t_stack **a)
     return (count);
 }
 
-int if_sorted(t_stack **a, t_stack **b)
-{
-    t_stack *ptr;
 
-    ptr = *a;
-    if (*b)
-        return (0);
-    while(ptr->next)
-    {
-        if (ptr->nb > ptr->next->nb)
-            return (0);
-        ptr = ptr->next;
-    }
-    return (1);
-}
 t_stack *sort(t_stack *a, t_stack *b, int count_a)
 {
     if (if_sorted(&a, &b))

@@ -15,21 +15,21 @@ void free_stack(t_stack **head)
     }
 }
 
-int if_sorted(t_stack **a, t_stack **b)
-{
-    t_stack *ptr;
-
-    ptr = *a;
-    if (*b)
-        return (0);
-    while(ptr->next)
-    {
-        if (ptr->nb > ptr->next->nb)
-            return (0);
-        ptr = ptr->next;
-    }
-    return (1);
-}
+//int if_sorted(t_stack **a, t_stack **b)
+//{
+//    t_stack *ptr;
+//
+//    ptr = *a;
+//    if (*b)
+//        return (0);
+//    while(ptr->next)
+//    {
+//        if (ptr->nb > ptr->next->nb)
+//            return (0);
+//        ptr = ptr->next;
+//    }
+//    return (1);
+//}
 
 void print_list(t_stack *n)
 {
@@ -97,6 +97,49 @@ void append_stack(t_stack **head, int number)
     last->next = new;
 }
 
+int if_sorted(t_stack **a, t_stack **b)
+{
+    t_stack *ptr;
+
+    ptr = *a;
+    if (*b)
+        return (0);
+    while(ptr->next)
+    {
+        if (ptr->nb > ptr->next->nb)
+            return (0);
+        ptr = ptr->next;
+    }
+    return (1);
+}
+
+//long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
+//{
+//    long long	r;
+//    long long	nb;
+//
+//    r = 1;
+//    nb = 0;
+//    while ((*str >= 9 && *str <= 13) || *str == 32)
+//        str++;
+//    if (*str == '-' || *str == '+')
+//    {
+//        if (*str == '-')
+//            r = -1;
+//        str++;
+//    }
+//    while (*str != '\0')
+//    {
+//        if (*str < 48 || *str > 57)
+//            print_error(a,b);
+//        nb = nb * 10 + (*str - '0') * r;
+//        str++;
+//    }
+//    nb *= r;
+//    more_int(nb,a,b);
+//    return (nb);
+//}
+//
 
 t_stack *create_stack(t_stack **head,char **argv,int argc)
 {
