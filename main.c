@@ -4,22 +4,6 @@
 
 
 
-int lst_count(t_stack **a)
-{
-    t_stack *ptr;
-    int count;
-
-    ptr = *a;
-    count = 0;
-    if (!*a)
-        return (0);
-    while(ptr)
-    {
-        ptr = ptr->next;
-        count++;
-    }
-    return (count);
-}
 
 
 t_stack *sort(t_stack *a, t_stack *b, int count_a)
@@ -52,9 +36,11 @@ int main(int argc, char **argv)
         a = create_stack(&head,argv,argc);
     else
         return (0);
+//    print_list(a);
+//    print_list(b);
     count_a = lst_count(&a);
-    a = sort(a,b,count_a);
-    free_stack(&a);
-    free_stack(&b);
+	a = sort(a,b,count_a);
+	free_stack(&a);
+	free_stack(&b);
     return (0);
 }

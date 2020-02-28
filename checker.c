@@ -1,8 +1,10 @@
 #include "push_swap.h"
 
-void print_ok()
+void print_ok(t_stack **a, t_stack **b)
 {
     ft_putstr("\33[32mOK\n");
+    free_stack(a);
+    free_stack(b);
     exit(1);
 }
 
@@ -54,7 +56,7 @@ void		what_command(char *str, t_stack **a, t_stack **b)
     else if (ft_strcmp(str, "rrr") == 0)
         rrr_nw(a, b);
     else
-        print_error(a,b);
+		print_error(a,b);
 }
 
 
@@ -76,21 +78,25 @@ long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
 
     r = 1;
     nb = 0;
-    while ((*str >= 9 && *str <= 13) || *str == 32)
+    while (is_space(*str))
         str++;
     if (*str == '-' || *str == '+')
-    {
+	{
         if (*str == '-')
             r = -1;
+        if (!ft_isdigit(*str + 1))
+        	print_error(a,b);
         str++;
     }
-    while (*str)
-    {
-        if (*str < '0' || *str > '9')
-            print_error(a, b);
-        nb = nb * 10 + (*str - '0');
-        str++;
-    }
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			print_error(a,b);
+//			ft_putstr("Error\n");
+//			exit(1);
+		nb = nb * 10 + (*str - '0');
+		str++;
+	}
     nb *= r;
     more_int(nb,a,b);
     return (nb);
@@ -116,35 +122,17 @@ void parse_command(t_stack **a, t_stack **b)
 {
     char *line;
 
-    if (if_sorted(a,b))
-        print_ok();
-    while(get_next_line(0,&line))
+//    if (if_sorted(a,b))
+//        print_ok();
+    while(get_next_line(0,&line) > 0)
     {
         what_command(line,a,b);
         if (if_sorted(a,b))
-            print_ok();
+            print_ok(a,b);
         free(line);
     }
     if (if_sorted(a,b))
-        print_ok();
+        print_ok(a,b);
     else
         print_ko(a,b);
 }
-
-//
-//int main(int argc, char **argv)
-//{
-//    t_stack *a;
-//    t_stack *b;
-//    t_stack *head;
-//
-//    if (argc < 2)
-//        return (0);
-//    a = create_stack(&head,argv,argc);
-//    if (a == NULL)
-//        return (0);
-//    parse_command(&a,&b);
-//    free_stack(&a);
-//    free_stack(&b);
-//    return (0);
-//}

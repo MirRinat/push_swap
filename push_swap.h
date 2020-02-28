@@ -5,6 +5,7 @@
 
 #include "./libft/libft.h"
 #include "./get_next_line/get_next_line.h"
+#include <stdio.h>
 #define	INTERVAL_HUNDRED	5
 #define INTERVAL_FIVE_HUNDRED	15
 #define INTERVAL_MORE	20

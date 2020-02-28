@@ -1,6 +1,24 @@
 #include "push_swap.h"
 
 
+int lst_count(t_stack **a)
+{
+	t_stack *ptr;
+	int count;
+
+	ptr = *a;
+	count = 0;
+	if (!*a)
+		return (0);
+	while(ptr)
+	{
+		ptr = ptr->next;
+		count++;
+	}
+	return (count);
+}
+
+
 void free_stack(t_stack **head)
 {
     t_stack *tmp;
