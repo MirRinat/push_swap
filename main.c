@@ -36,8 +36,6 @@ int main(int argc, char **argv)
         a = create_stack(&head,argv,argc);
     else
         return (0);
-//    print_list(a);
-//    print_list(b);
     count_a = lst_count(&a);
 	a = sort(a,b,count_a);
 	free_stack(&a);

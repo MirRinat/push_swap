@@ -20,7 +20,7 @@ void  baraban_b(t_stack **head,int pos)
             rrb(&*head);
 }
 
-void	min_max_b(t_stack **a, t_stack **b)
+void	before_push_b(t_stack **a, t_stack **b)
 {
     long	max_b;
     long	min_b;
@@ -33,24 +33,6 @@ void	min_max_b(t_stack **a, t_stack **b)
     max_b_pos = count_step(&*b, max_b);
 	baraban_b(b, max_b_pos);
 	pb(a,b);
-}
-
-
-int find_pos_in_b(t_stack **a,t_stack **b)
-{
-    int pos;
-    t_stack *ptr;
-
-    pos = 0;
-    ptr = *b;
-    while(ptr && ptr->next)
-    {
-        pos++;
-        if ((*a)->nb > ptr->nb && (*a)->nb < ptr->next->nb)
-            return (pos);
-        ptr = ptr->next;
-    }
-    return (pos);
 }
 
 void		before_push_a(t_stack **a, t_stack **b)
@@ -69,18 +51,18 @@ void		before_push_a(t_stack **a, t_stack **b)
 }
 
 
-int		if_find_less_chunk(t_stack *a, int local_max)
+int		if_find_less_chunk(t_stack *a, int chunk)
 {
     while (a)
     {
-        if (a->nb <= local_max)
+        if (a->nb <= chunk)
             return (1);
         a = a->next;
     }
     return (0);
 }
 
-int		range_pos_funct(t_stack *a, int local_max)
+int		less_pos_funct(t_stack *a, int chunk)
 {
     int i;
 
@@ -88,35 +70,24 @@ int		range_pos_funct(t_stack *a, int local_max)
     while (a)
     {
         i++;
-        if (a->nb <= local_max)
+        if (a->nb <= chunk)
             return (i);
         a = a->next;
     }
     return (i);
 }
 
-void    before_push_b(t_stack **a, t_stack **b)
-{
-    int pos;
-
-    pos = find_pos_in_b(a, b);
-    baraban_b(b, pos);
-    pb(a, b);
-}
-
 void    find_less_chunk(t_stack **a, t_stack **b, int chunk)
 {
-    int range_pos;
+    int less_pos;
 
     while (if_find_less_chunk(*a, chunk))
     {
-        range_pos = range_pos_funct(*a, chunk);
+        less_pos = less_pos_funct(*a, chunk);
         if ((*a) && !((*a)->nb <= chunk))
-            baraban_a(a, range_pos);
-        if ((*a) && (*a)->nb <= chunk && (!(*b) || lst_count(&*b) == 1))
+            baraban_a(a, less_pos);
+        if ((*a) && (*a)->nb <= chunk && lst_count(&*b) < 2)
 			pb(a,b);
-        if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
-            min_max_b(a, b);
         if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
             before_push_b(a, b);
     }

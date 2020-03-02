@@ -182,7 +182,7 @@ else
 echo "❌  - ./checker 1 2 3 4 5 (instr: pb pb)"
 fi
 printf "test 2: "
-if [ "$(printf "ra\nra\nrra\nrra" | ./checker 1 2 3 4 5 | grep "OK" | wc -l)" -eq 1 ]
+if [ "$(printf "ra\nra\nrra\nrra\n" | ./checker 1 2 3 4 5 | grep "OK" | wc -l)" -eq 1 ]
 then
 echo "✅  - ./checker 1 2 3 4 5 (instr: ra ra rra rra)"
 else

@@ -34,8 +34,6 @@ int min_of_stack(t_stack **head)
     return (min);
 }
 
-
-
 int count_step(t_stack **head,int data)
 {
     int step;
