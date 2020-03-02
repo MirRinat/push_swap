@@ -23,6 +23,9 @@ void free_stack(t_stack **head)
 {
     t_stack *tmp;
 
+    if (!*head || !head)
+		return;
+
     while (*head)
     {
         tmp = *head;
@@ -131,33 +134,6 @@ int if_sorted(t_stack **a, t_stack **b)
     return (1);
 }
 
-//long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
-//{
-//    long long	r;
-//    long long	nb;
-//
-//    r = 1;
-//    nb = 0;
-//    while ((*str >= 9 && *str <= 13) || *str == 32)
-//        str++;
-//    if (*str == '-' || *str == '+')
-//    {
-//        if (*str == '-')
-//            r = -1;
-//        str++;
-//    }
-//    while (*str != '\0')
-//    {
-//        if (*str < 48 || *str > 57)
-//            print_error(a,b);
-//        nb = nb * 10 + (*str - '0') * r;
-//        str++;
-//    }
-//    nb *= r;
-//    more_int(nb,a,b);
-//    return (nb);
-//}
-//
 
 t_stack *create_stack(t_stack **head,char **argv,int argc)
 {

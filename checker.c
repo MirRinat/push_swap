@@ -3,24 +3,30 @@
 void print_ok(t_stack **a, t_stack **b)
 {
     ft_putstr("\33[32mOK\n");
-    free_stack(a);
-    free_stack(b);
+	if (*a)
+		free_stack(a);
+    if (*b)
+    	free_stack(b);
     exit(1);
 }
 
 void print_ko(t_stack **a, t_stack **b)
 {
     ft_putstr("\33[32mKO\n");
-    free_stack(a);
-    free_stack(b);
+	if (*a)
+		free_stack(a);
+    if (*b)
+    	free_stack(b);
     exit(1);
 }
 
 void		print_error(t_stack **a, t_stack **b)
 {
     ft_putstr("\33[31mError\033[0m\n");
-    free_stack(a);
-    free_stack(b);
+	if (*a)
+    	free_stack(a);
+    if (*b && b)
+    	free_stack(b);
     exit(1);
 }
 
@@ -35,7 +41,7 @@ void		what_command(char *str, t_stack **a, t_stack **b)
 {
     if (ft_strcmp(str, "sa") == 0)
         sa_nw(a);
-    else if (ft_strcmp(str, "sb") == 0)
+    else if (ft_strequ(str, "sb"))
         sb_nw(b);
     else if (ft_strcmp(str, "ss") == 0)
         ss_nw(a, b);
@@ -60,21 +66,26 @@ void		what_command(char *str, t_stack **a, t_stack **b)
 }
 
 
-void    more_int(long nb, t_stack **a, t_stack **b)
+void    more_int(long long int nb, t_stack **a, t_stack **b)
 {
     long long int small;
 
-    small = -2147483648;
     if(nb > 2147483647)
-        print_error(a,b);
-    if (nb < small)
-        print_error(a,b);
+	{
+		ft_putstr("\33[31mError\033[0m\n");
+		exit(1);
+	}
+    if (nb < -2147483648)
+	{
+		ft_putstr("\33[31mError\033[0m\n");
+		exit(1);
+	}
 }
 
 long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
 {
     long long	r;
-    long long	nb;
+	long long	nb;
 
     r = 1;
     nb = 0;
@@ -95,11 +106,10 @@ long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
 //			ft_putstr("Error\n");
 //			exit(1);
 		nb = nb * 10 + (*str - '0');
+		more_int(nb * r,a,b);
 		str++;
 	}
-    nb *= r;
-    more_int(nb,a,b);
-    return (nb);
+    return (nb * r);
 }
 
 void check_duplicate(t_stack *a, t_stack *b, int nbr)
@@ -117,22 +127,77 @@ void check_duplicate(t_stack *a, t_stack *b, int nbr)
         print_error(&a,&b);
 }
 
+int		final_confirmed_ordered(t_stack *nums, t_stack *b)
+{
+	if (b)
+		return (1);
+	if (!nums)
+		return (1);
+	while (nums)
+	{
+		if (nums->next)
+		{
+			if (nums->nb > nums->next->nb)
+				return (1);
+		}
+		nums = nums->next;
+	}
+	return (0);
+}
+
+t_stack			*create_a_list_c(int argc, char **argv, t_stack **a)
+{
+	t_stack	*hold_head;
+	t_stack	*head;
+	t_stack	*temp;
+	t_stack **b;
+	int		i;
+
+	i = 2;
+	head = malloc(sizeof(t_stack));
+	hold_head = head;
+	head->nb = ft_atoi_ps(argv[1], &a,&b);
+	head->next = NULL;
+	while (i < argc)
+	{
+		temp = malloc(sizeof(t_stack));
+		temp->nb = ft_atoi_ps(argv[i], &a,&b);
+		temp->next = NULL;
+		hold_head->next = temp;
+		hold_head = hold_head->next;
+		check_duplicate(a,b,(*a)->nb);
+		i++;
+	}
+	return (head);
+}
 
 void parse_command(t_stack **a, t_stack **b)
 {
     char *line;
 
 //    if (if_sorted(a,b))
-//        print_ok();
+//        print_ok(a,b);
     while(get_next_line(0,&line) > 0)
     {
+//    	if (if_sorted(a,b))
+//    		print_ok(a,b);
         what_command(line,a,b);
-        if (if_sorted(a,b))
-            print_ok(a,b);
+//        if (if_sorted(a,b))
+//            print_ok(a,b);
         free(line);
     }
-    if (if_sorted(a,b))
-        print_ok(a,b);
+	if (*b != NULL)
+	{
+		ft_putstr("\33[31mKO\033[0m\n");
+		free_stack(a);
+		free_stack(b);
+		exit(1);
+	}
+//    if (if_sorted(a,b))
+	if (final_confirmed_ordered(*a, *b) == 0)
+		ft_putstr("OK\n");
+//        print_ok(a,b);
     else
-        print_ko(a,b);
+		ft_putstr("\033[31mKO\033[0m\n");
+//        print_ko(a,b);
 }
