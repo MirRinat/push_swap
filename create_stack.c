@@ -102,9 +102,13 @@ void append_stack(t_stack **head, int number)
 {
     t_stack *new;
     t_stack *last;
-
+//
     if (!(new = (t_stack *)malloc(sizeof(t_stack))))
         return;
+//    new->nb = number;
+//    new->next = NULL;
+    last = *head;
+
     new->nb = number;
     new->next = NULL;
     if (*head == NULL)
@@ -144,11 +148,11 @@ t_stack *create_stack(t_stack **head,char **argv,int argc)
     int i;
 
     i = 1;
-
-    if (!(a = (t_stack *)malloc(sizeof(t_stack))))
-        return(0);
-    a->nb = ft_atoi_ps(argv[i++],&a,&b);
-    a->next = NULL;
+    a = *head;
+//    if (!(a = (t_stack *)malloc(sizeof(t_stack))))
+//        return(0);
+//    a->nb = ft_atoi_ps(argv[i++],&a,&b);
+//    a->next = NULL;
     while(i < argc)
     {
         append_stack(&a,ft_atoi_ps(argv[i],&a,&b));

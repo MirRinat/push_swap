@@ -61,6 +61,8 @@ void		what_command(char *str, t_stack **a, t_stack **b)
         rrb_nw(b);
     else if (ft_strcmp(str, "rrr") == 0)
         rrr_nw(a, b);
+//    else if (ft_strequ(str, ""))
+//        return ;
     else
 		print_error(a,b);
 }
@@ -103,8 +105,6 @@ long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
 	{
 		if (!ft_isdigit(*str))
 			print_error(a,b);
-//			ft_putstr("Error\n");
-//			exit(1);
 		nb = nb * 10 + (*str - '0');
 		more_int(nb * r,a,b);
 		str++;
@@ -127,51 +127,9 @@ void check_duplicate(t_stack *a, t_stack *b, int nbr)
         print_error(&a,&b);
 }
 
-int		final_confirmed_ordered(t_stack *nums, t_stack *b)
-{
-	if (b)
-		return (1);
-	if (!nums)
-		return (1);
-	while (nums)
-	{
-		if (nums->next)
-		{
-			if (nums->nb > nums->next->nb)
-				return (1);
-		}
-		nums = nums->next;
-	}
-	return (0);
-}
 
-t_stack			*create_a_list_c(int argc, char **argv, t_stack **a)
-{
-	t_stack	*hold_head;
-	t_stack	*head;
-	t_stack	*temp;
-	t_stack **b;
-	int		i;
 
-	i = 2;
-	head = malloc(sizeof(t_stack));
-	hold_head = head;
-	head->nb = ft_atoi_ps(argv[1], &a,&b);
-	head->next = NULL;
-	while (i < argc)
-	{
-		temp = malloc(sizeof(t_stack));
-		temp->nb = ft_atoi_ps(argv[i], &a,&b);
-		temp->next = NULL;
-		hold_head->next = temp;
-		hold_head = hold_head->next;
-		check_duplicate(a,b,(*a)->nb);
-		i++;
-	}
-	return (head);
-}
-
-void parse_command(t_stack **a, t_stack **b)
+int parse_command(t_stack **a, t_stack **b)
 {
     char *line;
 
@@ -181,23 +139,26 @@ void parse_command(t_stack **a, t_stack **b)
     {
 //    	if (if_sorted(a,b))
 //    		print_ok(a,b);
+//        if (ft_strequ(line,""))
+//            break;
+//        if (if_sorted(a,b))
+//    		print_ok(a,b);
         what_command(line,a,b);
 //        if (if_sorted(a,b))
 //            print_ok(a,b);
         free(line);
     }
-	if (*b != NULL)
-	{
-		ft_putstr("\33[31mKO\033[0m\n");
-		free_stack(a);
-		free_stack(b);
-		exit(1);
-	}
+//    print_list(*a);
+//    printf("\n");
+//    print_list(*b);
+//	if (*b)
+//        print_ko(a,b);
 //    if (if_sorted(a,b))
-	if (final_confirmed_ordered(*a, *b) == 0)
+    if (if_sorted(a,b))
 		ft_putstr("OK\n");
 //        print_ok(a,b);
     else
 		ft_putstr("\033[31mKO\033[0m\n");
 //        print_ko(a,b);
+    return (0);
 }

@@ -8,8 +8,10 @@ int main(int argc, char **argv)
 
     if (argc < 2)
         return (0);
-    a = create_a_list_c(argc,argv,&a);
+    a = create_stack(&a,argv,argc);
     b = NULL;
+    if (a == NULL)
+        return (0);
     parse_command(&a,&b);
     free_stack(&a);
     free_stack(&b);

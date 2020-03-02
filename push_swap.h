@@ -28,7 +28,7 @@ void free_stack(t_stack **head);
 
 //checker
 int					get_next_line(const int fd, char **line);
-void parse_command(t_stack **a, t_stack **b);
+int parse_command(t_stack **a, t_stack **b);
 void    more_int(long long int nb, t_stack **a, t_stack **b);
 void		print_error(t_stack **a, t_stack **b);
 void check_duplicate(t_stack *a,t_stack *b, int nbr);
