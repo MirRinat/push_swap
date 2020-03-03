@@ -2,10 +2,6 @@
 #include "push_swap.h"
 
 
-
-
-
-
 t_stack *sort(t_stack *a, t_stack *b, int count_a)
 {
     if (if_sorted(&a, &b))
@@ -38,6 +34,7 @@ int main(int argc, char **argv)
         return (0);
     count_a = lst_count(&a);
 	a = sort(a,b,count_a);
+//	print_list(a);
 	free_stack(&a);
 	free_stack(&b);
     return (0);
