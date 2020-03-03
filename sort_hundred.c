@@ -3,6 +3,49 @@
 
 #include "push_swap.h"
 
+
+int max_of_stack_chunk(t_stack **head, int chunk)
+{
+    int max;
+
+    if ((*head)->nb >= chunk)
+        max = (*head)->nb;
+    else
+        max = -2147483648;
+//    max = (*head)->nb;
+//    max = -2147483648;
+    if (*head == NULL)
+        return(0);
+    while (*head)
+    {
+        if ((*head)->nb > max && (*head)->nb > chunk)
+            max = (*head)->nb;
+        head = &(*head)->next;
+    }
+    return (max);
+
+}
+
+int min_of_stack_chunk(t_stack **head, int chunk)
+{
+    int min;
+
+//    min = (*head)->nb;
+    if ((*head)->nb <= chunk)
+        min = (*head)->nb;
+    else
+        min = 2147483647;
+    if (*head == NULL)
+        return(0);
+    while (*head)
+    {
+        if ((*head)->nb < min && (*head)->nb < chunk)
+            min = (*head)->nb;
+        head = &(*head)->next;
+    }
+    return (min);
+}
+
 void  baraban_b(t_stack **head,int pos)
 {
     int len;
@@ -31,8 +74,8 @@ void	before_push_b(t_stack **a, t_stack **b)
     min_b = min_of_stack(&*b);
     min_b_pos = count_step(&*b, min_b);
     max_b_pos = count_step(&*b, max_b);
-	baraban_b(b, max_b_pos);
-	pb(a,b);
+//    baraban_b(b, max_b_pos);
+    pb(a,b);
 }
 
 void		before_push_a(t_stack **a, t_stack **b)
@@ -86,10 +129,12 @@ void    find_less_chunk(t_stack **a, t_stack **b, int chunk)
         less_pos = less_pos_funct(*a, chunk);
         if ((*a) && !((*a)->nb <= chunk))
             baraban_a(a, less_pos);
-        if ((*a) && (*a)->nb <= chunk && lst_count(&*b) < 2)
-			pb(a,b);
-        if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
-            before_push_b(a, b);
+        //if ((*a))//  && (*a)->nb <= chunk) // && lst_count(&*b) < 2  )
+        pb(a,b);
+//        if (lst_count(&*b) > 1 && (*a) && (*a)->nb <= chunk)
+//            before_push_b_one(a, b);
+//        if (lst_count(&*b) > 30 && (*a) && (*a)->nb <= chunk)
+//            before_push_b_two(a, b,chunk);
     }
 }
 

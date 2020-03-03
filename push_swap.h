@@ -6,8 +6,8 @@
 #include "./libft/libft.h"
 #include "./get_next_line/get_next_line.h"
 #include <stdio.h>
-#define	INTERVAL_HUNDRED	5
-#define INTERVAL_FIVE_HUNDRED	11
+#define	INTERVAL_HUNDRED	6
+#define INTERVAL_FIVE_HUNDRED	12
 #define INTERVAL_MORE	20
 
 typedef struct s_stack
