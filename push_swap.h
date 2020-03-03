@@ -5,6 +5,7 @@
 
 #include "./libft/libft.h"
 #include "./get_next_line/get_next_line.h"
+#include "./ft_printf/includes/ft_printf.h"
 #include <stdio.h>
 #define	INTERVAL_HUNDRED	6
 #define INTERVAL_FIVE_HUNDRED	12
@@ -18,33 +19,24 @@ typedef struct s_stack
 
 
 
-typedef struct s_values
+typedef struct s_bonus
 {
-    int				min;
-    int				second_min;
-    int				middle;
-    int				max;
-    int				size_a;
-    int				size_b;
-    int				v_flag;
-    int				vz_flag;
-    int				c_flag;
-    int				size;
-    int				pw;
-    int				*order;
-    int				miss_a;
-    int				miss_b;
+    char            *command;
+    int             flag_v;
+    int             flag_help;
+    int             flag_cl;
+    int             count_flag;
     char			bloc[200];
     char			line[46];
     char			spaces[200];
-}               t_values;
+}               t_bonus;
 
 //create stack
 void print_list(t_stack *n);
 void reverse_stack(t_stack **head);
 //void append_stack(t_stack *head, int number);
 void push_stack(t_stack **head,int number);
-t_stack     *create_stack(t_stack **head,char **argv,int argc);
+t_stack     *create_stack(t_stack **head,char **argv,int argc, t_bonus *val);
 long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b);
 void free_stack(t_stack **head);
 
@@ -90,7 +82,7 @@ void pa_nw(t_stack **a,t_stack **b);
 void pb_nw(t_stack **a,t_stack **b);
 
 //sorting
-void sort_two(t_stack **a);
+void sort_two(t_stack **a,t_stack **b, t_bonus *fl);
 void sort_three(t_stack **a);
 void sort_five(t_stack **a,t_stack **b);
 int if_sorted(t_stack **a, t_stack **b);
@@ -106,5 +98,10 @@ int max_of_stack(t_stack **head);
 void insert_sort(t_stack **a,t_stack **b);
 void quick_sort(t_stack **a, t_stack **b);
 void    sorting(t_stack **a, t_stack **b,int count_a);
+
+
+//bonus
+void print_bonus(t_stack *a, t_stack *b, t_bonus *fl);
+void sa_nw_bonus(t_stack **a, t_stack **b, t_bonus *fl);
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

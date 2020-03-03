@@ -59,7 +59,7 @@ int					get_next_line(const int fd, char **line)
 {
 	int				ret;
 	char			*end;
-	char			buf[BUFF_SIZE + 1];
+	char			buf[BUFFF_SIZE + 1];
 	static	char	*ram[OPEN_MAX];
 
 	if (fd < 0 || !line || (fd > OPEN_MAX))
@@ -67,7 +67,7 @@ int					get_next_line(const int fd, char **line)
 	*line = ft_strnew(0);
 	if (uram(line, &ram[fd], &end))
 		return (1);
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	while ((ret = read(fd, buf, BUFFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
 		if ((end = ft_strchr(buf, '\n')))

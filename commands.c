@@ -14,7 +14,26 @@ void sa_nw(t_stack **a)
     (*a) = b;
     tmp->next = b->next;
     (*a)->next = tmp;
+
 }
+
+
+void sa_nw_bonus(t_stack **a, t_stack **b, t_bonus *fl)
+{
+    t_stack *t;
+    t_stack *tmp;
+
+    if (*a == NULL || a == NULL || lst_count(a) == 1)
+        return;
+    t = (*a)->next;
+    tmp = *a;
+    (*a) = t;
+    tmp->next = t->next;
+    (*a)->next = tmp;
+    (fl)->command = "sa\n";
+    print_bonus(*a, *b, fl);
+}
+
 
 void sb_nw(t_stack **a)
 {
@@ -114,7 +133,6 @@ void pb_nw(t_stack **a,t_stack **b)
 //##############################
 //functions with write
 
-
 void sa(t_stack **a)
 {
     t_stack *b;
@@ -145,18 +163,6 @@ void ss(t_stack **a,t_stack **b)
 
 void ra(t_stack **head)
 {
-//    t_stack *first;
-//    t_stack *last;
-//
-//    if (*head == NULL || head == NULL)
-//        return;
-//    first = *head;
-//    last = *head;
-//    while (last->next != NULL)
-//        last = last->next;
-//    (*head) = (*head)->next;
-//    first->next = NULL;
-//    last->next = first;
 	ra_nw(head);
     ft_putstr("ra\n");
 }
@@ -176,21 +182,6 @@ void rr(t_stack **a,t_stack **b)
 
 void rra(t_stack **head)
 {
-//    t_stack *last;
-//    t_stack *ptr;
-//
-//    if (*head == NULL || head == NULL)
-//        return;
-//    ptr = *head;
-//    while (ptr->next != NULL)
-//    {
-//        last = ptr;
-//        ptr = ptr->next;
-//    }
-//    last->next = NULL;
-//    ptr->next = (*head);
-//    *head = ptr;
-//    last->next = NULL;
 	rra_nw(head);
     ft_putstr("rra\n");
 }
@@ -210,28 +201,12 @@ void rrr(t_stack **a, t_stack **b)
 
 void pa(t_stack **a,t_stack **b)
 {
-//    t_stack *second;
-//
-//    if (*b == NULL)
-//        return;
-//    second = (*b)->next;
-//    (*b)->next = *a;
-//    *a = *b;
-//    *b = second;
 	pa_nw(a,b);
     ft_putstr("pa\n");
 }
 
 void pb(t_stack **a,t_stack **b)
 {
-//    t_stack *second;
-//
-//    if (*a == NULL)
-//        return;
-//    second = (*a)->next;
-//    (*a)->next = *b;
-//    *b = *a;
-//    *a = second;
 	pb_nw(a,b);
     ft_putstr("pb\n");
 }
