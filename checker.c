@@ -76,9 +76,9 @@ long long			ft_atoi_ps(const char *str,t_stack **a, t_stack **b)
 	{
         if (*str == '-')
             r = -1;
-        if (!ft_isdigit(*str + 1))
-        	print_error(a,b);
         str++;
+        if (!ft_isdigit(*str))
+        	print_error(a,b);
     }
 	while (*str)
 	{

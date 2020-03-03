@@ -149,10 +149,7 @@ t_stack *create_stack(t_stack **head,char **argv,int argc)
 
     i = 1;
     a = *head;
-//    if (!(a = (t_stack *)malloc(sizeof(t_stack))))
-//        return(0);
-//    a->nb = ft_atoi_ps(argv[i++],&a,&b);
-//    a->next = NULL;
+
     while(i < argc)
     {
         append_stack(&a,ft_atoi_ps(argv[i],&a,&b));
