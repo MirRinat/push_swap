@@ -25,9 +25,9 @@ int main(int argc, char **argv)
 {
     t_stack *a;
     t_stack *b;
-    int count_a;
     t_stack *head;
-
+    int count_a;
+    
     if (argc > 2)
         a = create_stack(&head,argv,argc);
     else

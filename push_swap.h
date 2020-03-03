@@ -16,6 +16,29 @@ typedef struct s_stack
     struct s_stack *next;
 }               t_stack;
 
+
+
+typedef struct s_values
+{
+    int				min;
+    int				second_min;
+    int				middle;
+    int				max;
+    int				size_a;
+    int				size_b;
+    int				v_flag;
+    int				vz_flag;
+    int				c_flag;
+    int				size;
+    int				pw;
+    int				*order;
+    int				miss_a;
+    int				miss_b;
+    char			bloc[200];
+    char			line[46];
+    char			spaces[200];
+}               t_values;
+
 //create stack
 void print_list(t_stack *n);
 void reverse_stack(t_stack **head);
