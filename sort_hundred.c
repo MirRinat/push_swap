@@ -1,22 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_hundred.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bglinda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/04 18:59:25 by bglinda           #+#    #+#             */
+/*   Updated: 2020/03/04 18:59:27 by bglinda          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
-
-void  baraban_b(t_stack **b,t_stack **a, t_bonus *fl, int pos)
-{
-    int len;
-    int step;
-    int step2;
-
-    len = lst_count(&*b);
-    step = pos;
-    step2 = len - pos;
-    if (pos < len / 2)
-        while(step--)
-            rb(&*a,&*b,fl);
-    if (pos >= len / 2)
-        while(step2--)
-            rrb(&*a, &*b, fl);
-}
 
 void		before_push_a(t_stack **a, t_stack **b, t_bonus *fl)
 {

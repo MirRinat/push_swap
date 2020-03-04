@@ -1,75 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_five.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bglinda <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/04 18:59:13 by bglinda           #+#    #+#             */
+/*   Updated: 2020/03/04 18:59:15 by bglinda          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-
-int max_of_stack(t_stack **head)
-{
-    int max;
-
-    max = (*head)->nb;
-    if (*head == NULL)
-        return(0);
-    while (*head)
-    {
-        if ((*head)->nb > max)
-            max = (*head)->nb;
-        head = &(*head)->next;
-    }
-    return (max);
-
-}
-
-int min_of_stack(t_stack **head)
-{
-    int min;
-
-    min = (*head)->nb;
-    if (*head == NULL)
-        return(0);
-    while (*head)
-    {
-        if ((*head)->nb < min)
-            min = (*head)->nb;
-        head = &(*head)->next;
-    }
-    return (min);
-}
-
-int count_step(t_stack **head,int data)
-{
-    int step;
-    t_stack *ptr;
-
-    step = 0;
-    ptr = *head;
-    while(ptr->nb != data)
-    {
-        ptr = ptr->next;
-        ++step;
-    }
-    return (step);
-}
-
-void  baraban_a(t_stack **a,t_stack **b, t_bonus *fl, int pos)
-{
-    int len = lst_count(&*a);
-    int step;
-    int step2;
-
-    step = pos;
-    step2 = len - pos;
-    if (pos < len / 2)
-        while(step)
-        {
-            ra(&*a,&*b, fl);
-            step--;
-        }
-    if (pos >= len / 2)
-        while(step2)
-        {
-            rra(&*a,&*b, fl);
-            step2--;
-        }
-}
 
 void	min_max_a(t_stack **a, t_stack **b, t_bonus *fl)
 {
@@ -80,8 +21,6 @@ void	min_max_a(t_stack **a, t_stack **b, t_bonus *fl)
     min_a_pos = count_step(&*a, min_a);
     baraban_a(a,b,fl,min_a_pos);
 }
-
-
 
 int find_pos_in_a(t_stack **a,t_stack **b)
 {
@@ -99,7 +38,6 @@ int find_pos_in_a(t_stack **a,t_stack **b)
     }
     return (pos);
 }
-
 
 void sort_five(t_stack **a,t_stack **b,t_bonus *fl) {
 

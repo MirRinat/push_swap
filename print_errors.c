@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_checker.c                                     :+:      :+:    :+:   */
+/*   print_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bglinda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/04 18:57:04 by bglinda           #+#    #+#             */
-/*   Updated: 2020/03/04 18:58:02 by bglinda          ###   ########.fr       */
+/*   Created: 2020/03/04 18:46:27 by bglinda           #+#    #+#             */
+/*   Updated: 2020/03/04 18:58:11 by bglinda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			main(int argc, char **argv)
+void			print_ok(t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
-	t_bonus *fl;
+	ft_putstr("\033[32mOK\033[0m\n");
+	free_stack(a);
+	free_stack(b);
+	exit(1);
+}
 
-	fl = (t_bonus *)malloc(sizeof(t_bonus));
-	if (argc < 2)
-		return (0);
-	a = create_stack(&a, argv, argc, fl);
-	b = NULL;
-	if (a == NULL)
-		return (0);
-	parse_command(&a, &b, fl);
-	free(fl);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+void			print_ko(t_stack **a, t_stack **b)
+{
+	ft_putstr("\033[31mKO\033[0m\n");
+	free_stack(a);
+	free_stack(b);
+	exit(1);
+}
+
+void			print_error(t_stack **a, t_stack **b)
+{
+	ft_putstr("\033[31mError\033[0m\n");
+	free_stack(a);
+	free_stack(b);
+	exit(1);
 }
