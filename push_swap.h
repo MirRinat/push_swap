@@ -5,7 +5,7 @@
 
 #include "./libft/libft.h"
 #include "./get_next_line/get_next_line.h"
-#include "./ft_printf/includes/ft_printf.h"
+//#include "./ft_printf/includes/ft_printf.h"
 #include <stdio.h>
 #define	INTERVAL_HUNDRED	6
 #define INTERVAL_FIVE_HUNDRED	12
@@ -43,7 +43,7 @@ void free_stack(t_stack **head);
 
 //checker
 int					get_next_line(const int fd, char **line);
-void parse_command(t_stack **a, t_stack **b);
+void parse_command(t_stack **a, t_stack **b,t_bonus *fl);
 void    more_int(long long int nb, t_stack **a, t_stack **b);
 void		print_error(t_stack **a, t_stack **b);
 void check_duplicate(t_stack *a,t_stack *b, int nbr);
@@ -55,53 +55,54 @@ int lst_count(t_stack **a);
 
 //commands
 //with write
-void sa(t_stack **head);
-void sb(t_stack **a);
-void ss(t_stack **a,t_stack **b);
-void ra(t_stack **head);
-void rb(t_stack **head);
-void rr(t_stack **a,t_stack **b);
-void rra(t_stack **head);
-void rrb(t_stack **head);
-void rrr(t_stack **a, t_stack **b);
-void pa(t_stack **a,t_stack **b);
-void pb(t_stack **a,t_stack **b);
+void sa(t_stack **a, t_stack **b, t_bonus *fl);
+void sb(t_stack **b, t_stack **a, t_bonus *fl);
+void ss(t_stack **a,t_stack **b, t_bonus *fl);
+void ra(t_stack **a,t_stack **b, t_bonus *fl);
+void rb(t_stack **a,t_stack **b, t_bonus *fl);
+void rr(t_stack **a,t_stack **b,t_bonus *fl);
+void rra(t_stack **a,t_stack**b,t_bonus *fl);
+void rrb(t_stack **a, t_stack **b, t_bonus *fl);
+void rrr(t_stack **a, t_stack **b, t_bonus *fl);
+void pa(t_stack **a,t_stack **b, t_bonus *fl);
+void pb(t_stack **a,t_stack **b, t_bonus *fl);
 
 
 //without write
-void sa_nw(t_stack **head);
-void sb_nw(t_stack **a);
-void ss_nw(t_stack **a,t_stack **b);
-void ra_nw(t_stack **head);
-void rb_nw(t_stack **head);
-void rr_nw(t_stack **a,t_stack **b);
-void rra_nw(t_stack **head);
-void rrb_nw(t_stack **head);
-void rrr_nw(t_stack **a, t_stack **b);
-void pa_nw(t_stack **a,t_stack **b);
-void pb_nw(t_stack **a,t_stack **b);
+void sa_nw(t_stack **a, t_stack **b, t_bonus *fl);
+void sb_nw(t_stack **a, t_stack **b, t_bonus *fl);
+void ss_nw(t_stack **a, t_stack **b, t_bonus *fl);
+void ra_nw(t_stack **a, t_stack **b,t_bonus *fl);
+void rb_nw(t_stack **a, t_stack **b,t_bonus *fl);
+void rr_nw(t_stack **a, t_stack **b, t_bonus *fl);
+void rra_nw(t_stack **a, t_stack **b, t_bonus *fl);
+void rrb_nw(t_stack **a,t_stack **b, t_bonus *fl);
+void rrr_nw(t_stack **a,t_stack **b, t_bonus *fl);
+void pa_nw(t_stack **a,t_stack **b, t_bonus *fl);
+void pb_nw(t_stack **a,t_stack **b, t_bonus *fl);
 
 //sorting
 void sort_two(t_stack **a,t_stack **b, t_bonus *fl);
-void sort_three(t_stack **a);
-void sort_five(t_stack **a,t_stack **b);
+void sort_three(t_stack **a, t_stack **b, t_bonus *fl);
+void sort_five(t_stack **a,t_stack **b, t_bonus *fl);
+void insert_sort(t_stack **a,t_stack **b,t_bonus *fl);
+void    sorting(t_stack **a, t_stack **b, t_bonus *fl, int count_a);
 int if_sorted(t_stack **a, t_stack **b);
 int if_reverse_sorted(t_stack **b);
 int max_of_stack(t_stack **head);
 int min_of_stack(t_stack **head);
 
-
-void  baraban_a(t_stack **head,int pos);
+//helper func
+void  baraban_a(t_stack **a,t_stack **b, t_bonus *fl, int pos);
 int count_step(t_stack **head,int data);
 int min_of_stack(t_stack **head);
 int max_of_stack(t_stack **head);
-void insert_sort(t_stack **a,t_stack **b);
+
 void quick_sort(t_stack **a, t_stack **b);
-void    sorting(t_stack **a, t_stack **b,int count_a);
+
 
 
 //bonus
 void print_bonus(t_stack *a, t_stack *b, t_bonus *fl);
-void sa_nw_bonus(t_stack **a, t_stack **b, t_bonus *fl);
 
 #endif //PUSH_SWAP_PUSH_SWAP_H

@@ -2,7 +2,7 @@
 
 void print_ok(t_stack **a, t_stack **b)
 {
-    ft_putstr("\33[32mOK\n");
+    ft_putstr("\033[32mOK\033[0m\n");
     free_stack(a);
     free_stack(b);
     exit(1);
@@ -10,7 +10,7 @@ void print_ok(t_stack **a, t_stack **b)
 
 void print_ko(t_stack **a, t_stack **b)
 {
-    ft_putstr("\33[31mKO\n");
+    ft_putstr("\033[31mKO\033[0m\n");
     free_stack(a);
 	free_stack(b);
     exit(1);
@@ -18,37 +18,37 @@ void print_ko(t_stack **a, t_stack **b)
 
 void		print_error(t_stack **a, t_stack **b)
 {
-    ft_putstr("\33[31mError\n");
+    ft_putstr("\033[31mError\033[0m\n");
     free_stack(a);
     free_stack(b);
     exit(1);
 }
 
 
-void		what_command(char *str, t_stack **a, t_stack **b)
+void		what_command(char *str, t_stack **a, t_stack **b,t_bonus *fl)
 {
     if (!ft_strcmp(str, "sa"))
-        sa_nw(a);
+        sa_nw(a,b,fl);
     else if (!ft_strcmp(str, "sb"))
-        sb_nw(b);
+        sb_nw(b,a,fl);
     else if (!ft_strcmp(str, "ss"))
-        ss_nw(a, b);
+        ss_nw(a, b,fl);
     else if (!ft_strcmp(str, "pa"))
-        pa_nw(a, b);
+        pa_nw(a, b, fl);
     else if (!ft_strcmp(str, "pb"))
-        pb_nw(a, b);
+        pb_nw(a, b, fl);
     else if (!ft_strcmp(str, "ra"))
-        ra_nw(a);
+        ra_nw(a,b,fl);
     else if (!ft_strcmp(str, "rb"))
-        rb_nw(b);
+        rb_nw(b,a,fl);
     else if (!ft_strcmp(str, "rr"))
-        rr_nw(a, b);
+        rr_nw(a, b,fl);
     else if (!ft_strcmp(str, "rra"))
-        rra_nw(a);
+        rra_nw(a,b,fl);
     else if (!ft_strcmp(str, "rrb"))
-        rrb_nw(b);
+        rrb_nw(b,a,fl);
     else if (!ft_strcmp(str, "rrr"))
-        rrr_nw(a, b);
+        rrr_nw(a, b,fl);
     else
 		print_error(a,b);
 }
@@ -58,7 +58,7 @@ void    more_int(long long int nb, t_stack **a, t_stack **b)
 {
     if(nb > 2147483647 || nb < -2147483648)
 	{
-		ft_putstr("\33[31mError\n");
+		ft_putstr("\033[31mError\033[0m\n");
 		exit(1);
 	}
 }
@@ -106,7 +106,7 @@ void check_duplicate(t_stack *a, t_stack *b, int nbr)
         print_error(&a,&b);
 }
 
-void parse_command(t_stack **a, t_stack **b)
+void parse_command(t_stack **a, t_stack **b,t_bonus *fl)
 {
     char *line;
 
@@ -114,7 +114,7 @@ void parse_command(t_stack **a, t_stack **b)
     {
         if (ft_strequ(line,""))
             break;
-        what_command(line,a,b);
+        what_command(line,a,b,fl);
         free(line);
     }
     if (if_sorted(a,b))
