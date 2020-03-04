@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+
+
 void print_ok(t_stack **a, t_stack **b)
 {
     ft_putstr("\033[32mOK\033[0m\n");

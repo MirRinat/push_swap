@@ -12,10 +12,10 @@ void  baraban_b(t_stack **b,t_stack **a, t_bonus *fl, int pos)
     step2 = len - pos;
     if (pos < len / 2)
         while(step--)
-            rb(&*b,&*a,fl);
+            rb(&*a,&*b,fl);
     if (pos >= len / 2)
         while(step2--)
-            rrb(&*b, &*a, fl);
+            rrb(&*a, &*b, fl);
 }
 
 void		before_push_a(t_stack **a, t_stack **b, t_bonus *fl)

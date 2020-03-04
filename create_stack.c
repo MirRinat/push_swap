@@ -125,7 +125,7 @@ t_stack *create_stack(t_stack **head,char **argv,int argc, t_bonus *fl)
     a = *head;
     b = NULL;
     i = 1;
-    if ((fl)->flag_v)
+    if (fl && (fl)->flag_v)
         i = fl->count_flag + 1;
     while(i < argc)
     {

@@ -192,8 +192,8 @@ void rrb(t_stack **a, t_stack **b, t_bonus *fl)
 
 void rrr(t_stack **a, t_stack **b, t_bonus *fl)
 {
-    rra_nw(a,b,fl);
-    rrb_nw(b,a,fl);
+    rra_nw(a, b, fl);
+    rrb_nw(b, a, fl);
     if (!(fl->flag_v))
         ft_putstr("rrr\n");
 }
