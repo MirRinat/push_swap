@@ -36,22 +36,6 @@ void free_stack(t_stack **head)
     }
 }
 
-//int if_sorted(t_stack **a, t_stack **b)
-//{
-//    t_stack *ptr;
-//
-//    ptr = *a;
-//    if (*b)
-//        return (0);
-//    while(ptr->next)
-//    {
-//        if (ptr->nb > ptr->next->nb)
-//            return (0);
-//        ptr = ptr->next;
-//    }
-//    return (1);
-//}
-
 void print_list(t_stack *n)
 {
     while (n)
@@ -85,9 +69,6 @@ void reverse_stack(t_stack **head)
     *head = prev;
 }
 
-
-
-
 void push_stack(t_stack **head,int number)
 {
     t_stack *new;
@@ -102,13 +83,10 @@ void append_stack(t_stack **head, int number)
 {
     t_stack *new;
     t_stack *last;
-//
+
     if (!(new = (t_stack *)malloc(sizeof(t_stack))))
         return;
-//    new->nb = number;
-//    new->next = NULL;
     last = *head;
-
     new->nb = number;
     new->next = NULL;
     if (*head == NULL)
@@ -116,7 +94,6 @@ void append_stack(t_stack **head, int number)
         *head = new;
         return;
     }
-    last = *head;
     while(last->next)
         last = last->next;
     last->next = new;
@@ -139,17 +116,17 @@ int if_sorted(t_stack **a, t_stack **b)
 }
 
 
-t_stack *create_stack(t_stack **head,char **argv,int argc)
+t_stack *create_stack(t_stack **head,char **argv,int argc, t_bonus *fl)
 {
     t_stack *a;
     t_stack *b;
-
-    b = NULL;
     int i;
 
-    i = 1;
     a = *head;
-
+    b = NULL;
+    i = 1;
+    if (fl && (fl)->flag_v)
+        i = fl->count_flag + 1;
     while(i < argc)
     {
         append_stack(&a,ft_atoi_ps(argv[i],&a,&b));

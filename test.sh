@@ -286,7 +286,7 @@ elif [ $res -gt 8500 ]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   2️⃣  ❕  5️⃣     ✅  ✅"
 let "sred += $res"
-elif [ $res -gt 7300 ]
+elif [ $res -gt 7000 ]
 then
 echo "Test result on $from..$to randoms: \033[36m$res\033[m   3️⃣  ❕  5️⃣     ✅  ✅  ✅"
 let "sred += $res"
@@ -346,7 +346,7 @@ elif [ $dif -eq 500 ]
         elif [ $koef -gt 8500 ]
         then
         echo "\nMiddle value: \033[33m$koef\033[m   Grade is :  2️⃣     ✅  ✅"
-        elif [ $koef -gt 7300 ]
+        elif [ $koef -gt 7000 ]
         then
         echo "\nMiddle value: \033[33m$koef\033[m   Grade is :  3️⃣     ✅  ✅  ✅"
         elif [ $koef -gt 5500 ]

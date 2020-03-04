@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void sort_two(t_stack **a)
+void sort_two(t_stack **a, t_stack **b, t_bonus *fl)
 {
     int f;
     int s;
@@ -8,10 +8,10 @@ void sort_two(t_stack **a)
     f = a[0]->nb;
     s = a[0]->next->nb;
     if (s < f)
-        sa(a);
+        sa(a,b, fl);
 }
 
-void sort_three(t_stack **a)
+void sort_three(t_stack **a, t_stack **b, t_bonus *fl)
 {
     int first;
     int second;
@@ -21,19 +21,19 @@ void sort_three(t_stack **a)
     second = a[0]->next->nb;
     third = a[0]->next->next->nb;
     if ((first > second) && (first < third))
-        sa(a);
+        sa(a,b,fl);
     else if ((first < second) && (first > third))
-        rra(a);
+        rra(a,b,fl);
     else if ((first < second) && (second > third))
     {
-        rra(a);
-        sa(a);
+        rra(a,b,fl);
+        sa(a,b,fl);
     }
     else if ((first > second) && (second < third))
-        ra(a);
+        ra(a, b, fl);
     else if ((first > second) && (second > third))
     {
-        ra(a);
-        sa(a);
+        ra(a, b, fl);
+        sa(a,b,fl);
     }
 }

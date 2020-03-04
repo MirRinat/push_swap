@@ -2,89 +2,102 @@
 
 //functions fot ss,rr,rrr
 
-void sa_nw(t_stack **a)
+void sa_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {
-    t_stack *b;
+    t_stack *t;
     t_stack *tmp;
 
     if (*a == NULL || a == NULL || lst_count(a) == 1)
         return;
-    b = (*a)->next;
+    t = (*a)->next;
     tmp = *a;
-    (*a) = b;
-    tmp->next = b->next;
+    (*a) = t;
+    tmp->next = t->next;
     (*a)->next = tmp;
+    (fl)->command = "sa\n";
+    if (fl->flag_v)
+        print_bonus(*a, *b, fl);
 }
 
-void sb_nw(t_stack **a)
+void sb_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {
-    sa_nw(a);
+    fl->command = "sb\n";
+    sa_nw(b,a,fl);
 }
 
-void ss_nw(t_stack **a,t_stack **b)
+void ss_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
-    sa_nw(a);
-    sb_nw(b);
+    fl->command = "ss\n";
+    sa_nw(a,b,fl);
+    sb_nw(b,a,fl);
 }
 
-void ra_nw(t_stack **head)
+void ra_nw(t_stack **a,t_stack **b,t_bonus *fl)
 {
     t_stack *first;
     t_stack *last;
 
-    if (*head == NULL || *head == NULL || lst_count(head) == 1)
+    if (*a == NULL || *a == NULL || lst_count(a) == 1)
         return;
-    first = *head;
-    last = *head;
+    first = *a;
+    last = *a;
     while (last->next != NULL)
         last = last->next;
-    (*head) = (*head)->next;
+    (*a) = (*a)->next;
     first->next = NULL;
     last->next = first;
+    (fl)->command = "ra\n";
+    if (fl->flag_v)
+        print_bonus(*a, *b, fl);
 }
 
-void rb_nw(t_stack **head)
+void rb_nw(t_stack **a,t_stack **b,t_bonus *fl)
 {
-    ra_nw(head);
+    fl->command = "rb\n";
+    ra_nw(a,b,fl);
 }
 
-void rr_nw(t_stack **a,t_stack **b)
+void rr_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
-    ra_nw(a);
-    rb_nw(b);
+    ra_nw(a,b,fl);
+    rb_nw(b,a,fl);
 }
 
-void rra_nw(t_stack **head)
+void rra_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
     t_stack *last;
     t_stack *ptr;
 
-    if (*head == NULL || head == NULL || lst_count(head) == 1)
+    if (*a == NULL || a == NULL || lst_count(a) == 1)
         return;
-    ptr = *head;
+    ptr = *a;
     while (ptr->next != NULL)
     {
         last = ptr;
         ptr = ptr->next;
     }
     last->next = NULL;
-    ptr->next = (*head);
-    *head = ptr;
+    ptr->next = (*a);
+    *a = ptr;
     last->next = NULL;
+    (fl)->command = "rra\n";
+    if (fl->flag_v)
+        print_bonus(*a, *b, fl);
 }
 
-void rrb_nw(t_stack **head)
+void rrb_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
-    rra_nw(head);
+    fl->command = "rrb\n";
+    rra_nw(a,b,fl);
 }
 
-void rrr_nw(t_stack **a,t_stack **b)
+void rrr_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
-    rra_nw(a);
-    rrb_nw(b);
+    rra_nw(a,b,fl);
+    rrb_nw(b,a,fl);
 }
 
-void pa_nw(t_stack **a,t_stack **b)
+void pa_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
     t_stack *second;
 
@@ -94,9 +107,12 @@ void pa_nw(t_stack **a,t_stack **b)
     (*b)->next = *a;
     *a = *b;
     *b = second;
+    (fl)->command = "pa\n";
+    if (fl->flag_v)
+        print_bonus(*a, *b, fl);
 }
 
-void pb_nw(t_stack **a,t_stack **b)
+void pb_nw(t_stack **a,t_stack **b, t_bonus *fl)
 {
     t_stack *second;
 
@@ -106,6 +122,9 @@ void pb_nw(t_stack **a,t_stack **b)
     (*a)->next = *b;
     *b = *a;
     *a = second;
+    (fl)->command = "pb\n";
+    if (fl->flag_v)
+        print_bonus(*a, *b, fl);
 }
 
 
@@ -114,125 +133,82 @@ void pb_nw(t_stack **a,t_stack **b)
 //##############################
 //functions with write
 
-
-void sa(t_stack **a)
+void sa(t_stack **a, t_stack **b, t_bonus *fl)
 {
-    t_stack *b;
-    t_stack *tmp;
-
-    if (*a == NULL || a == NULL || lst_count(a) == 1)
-        return;
-    b = (*a)->next;
-    tmp = *a;
-    (*a) = b;
-    tmp->next = b->next;
-    (*a)->next = tmp;
-    ft_putstr("sa\n");
+    sa_nw(a,b,fl);
+    if (!(fl->flag_v))
+        ft_putstr("sa\n");
 }
 
-void sb(t_stack **a)
+void sb(t_stack **b, t_stack **a, t_bonus *fl)
 {
-    sa_nw(a);
+    sb_nw(b,a,fl);
     ft_putstr("sb\n");
 }
 
-void ss(t_stack **a,t_stack **b)
+void ss(t_stack **a,t_stack **b, t_bonus *fl)
 {
-    sa_nw(a);
-    sb_nw(b);
-    ft_putstr("ss\n");
+    sa_nw(a,b,fl);
+    sb_nw(b,a,fl);
+    if (!(fl->flag_v))
+        ft_putstr("ss\n");
 }
 
-void ra(t_stack **head)
+void ra(t_stack **a,t_stack **b, t_bonus *fl)
 {
-//    t_stack *first;
-//    t_stack *last;
-//
-//    if (*head == NULL || head == NULL)
-//        return;
-//    first = *head;
-//    last = *head;
-//    while (last->next != NULL)
-//        last = last->next;
-//    (*head) = (*head)->next;
-//    first->next = NULL;
-//    last->next = first;
-	ra_nw(head);
-    ft_putstr("ra\n");
+	ra_nw(a,b,fl);
+    if (!(fl->flag_v))
+        ft_putstr("ra\n");
 }
 
-void rb(t_stack **head)
+void rb(t_stack **a,t_stack **b, t_bonus *fl)
 {
-    ra_nw(head);
-    ft_putstr("rb\n");
+    ra_nw(b,a,fl);
+    if (!(fl->flag_v))
+        ft_putstr("rb\n");
 }
 
-void rr(t_stack **a,t_stack **b)
+void rr(t_stack **a,t_stack **b,t_bonus *fl)
 {
-    ra_nw(a);
-    rb_nw(b);
-    ft_putstr("rr\n");
+    ra_nw(a,b,fl);
+    rb_nw(b,a,fl);
+    if (!(fl->flag_v))
+        ft_putstr("rr\n");
 }
 
-void rra(t_stack **head)
+void rra(t_stack **a,t_stack **b,t_bonus *fl)
 {
-//    t_stack *last;
-//    t_stack *ptr;
-//
-//    if (*head == NULL || head == NULL)
-//        return;
-//    ptr = *head;
-//    while (ptr->next != NULL)
-//    {
-//        last = ptr;
-//        ptr = ptr->next;
-//    }
-//    last->next = NULL;
-//    ptr->next = (*head);
-//    *head = ptr;
-//    last->next = NULL;
-	rra_nw(head);
-    ft_putstr("rra\n");
+	rra_nw(a,b,fl);
+    if (!(fl->flag_v))
+        ft_putstr("rra\n");
 }
 
-void rrb(t_stack **head)
+void rrb(t_stack **a, t_stack **b, t_bonus *fl)
 {
-    rra_nw(head);
-    ft_putstr("rrb\n");
+    rra_nw(b,a,fl);
+    if (!(fl->flag_v))
+        ft_putstr("rrb\n");
 }
 
-void rrr(t_stack **a, t_stack **b)
+void rrr(t_stack **a, t_stack **b, t_bonus *fl)
 {
-    rra_nw(a);
-    rrb_nw(b);
-    ft_putstr("rrr\n");
+    rra_nw(a, b, fl);
+    rrb_nw(b, a, fl);
+    if (!(fl->flag_v))
+        ft_putstr("rrr\n");
 }
 
-void pa(t_stack **a,t_stack **b)
+void pa(t_stack **a,t_stack **b, t_bonus *fl)
 {
-//    t_stack *second;
-//
-//    if (*b == NULL)
-//        return;
-//    second = (*b)->next;
-//    (*b)->next = *a;
-//    *a = *b;
-//    *b = second;
-	pa_nw(a,b);
-    ft_putstr("pa\n");
+	pa_nw(a,b, fl);
+    if (!(fl->flag_v))
+        ft_putstr("pa\n");
 }
 
-void pb(t_stack **a,t_stack **b)
+void pb(t_stack **a,t_stack **b, t_bonus *fl)
 {
-//    t_stack *second;
-//
-//    if (*a == NULL)
-//        return;
-//    second = (*a)->next;
-//    (*a)->next = *b;
-//    *b = *a;
-//    *a = second;
-	pb_nw(a,b);
-    ft_putstr("pb\n");
+	pb_nw(a,b, fl);
+    if (!(fl->flag_v))
+        ft_putstr("pb\n");
 }
 
