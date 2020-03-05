@@ -12,13 +12,13 @@
 
 #include "push_swap.h"
 
-void sa_nw(t_stack **a, t_stack **b, t_bonus *fl)
+void		sa_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {
-	t_stack *t;
-	t_stack *tmp;
+	t_stack	*t;
+	t_stack	*tmp;
 
 	if (*a == NULL || a == NULL || lst_count(a) == 1)
-		return;
+		return ;
 	t = (*a)->next;
 	tmp = *a;
 	(*a) = t;
@@ -29,29 +29,29 @@ void sa_nw(t_stack **a, t_stack **b, t_bonus *fl)
 		print_bonus(*a, *b, fl);
 }
 
-void sb_nw(t_stack **a, t_stack **b, t_bonus *fl)
+void		sb_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {
 	fl->command = "sb\n";
-	sa_nw(b,a,fl);
+	sa_nw(b, a, fl);
 }
 
-void sa(t_stack **a, t_stack **b, t_bonus *fl)
+void		sa(t_stack **a, t_stack **b, t_bonus *fl)
 {
-	sa_nw(a,b,fl);
+	sa_nw(a, b, fl);
 	if (!(fl->flag_v))
 		ft_putstr("sa\n");
 }
 
-void sb(t_stack **b, t_stack **a, t_bonus *fl)
+void		sb(t_stack **b, t_stack **a, t_bonus *fl)
 {
-	sb_nw(b,a,fl);
+	sb_nw(b, a, fl);
 	ft_putstr("sb\n");
 }
 
-void ss(t_stack **a,t_stack **b, t_bonus *fl)
+void		ss(t_stack **a, t_stack **b, t_bonus *fl)
 {
-	sa_nw(a,b,fl);
-	sb_nw(b,a,fl);
+	sa_nw(a, b, fl);
+	sb_nw(b, a, fl);
 	if (!(fl->flag_v))
 		ft_putstr("ss\n");
 }
