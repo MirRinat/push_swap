@@ -38,24 +38,3 @@ int			find_pos_in_a(t_stack **a, t_stack **b)
 	}
 	return (pos);
 }
-
-void		sort_five(t_stack **a, t_stack **b, t_bonus *fl)
-{
-	int		pos;
-	int		min;
-
-	while (lst_count(&*a) > 3)
-		pb(a, b, fl);
-	sort_three(&*a, &*b, fl);
-	while (lst_count(&*b))
-	{
-		if ((*b)->nb > max_of_stack(a) || (*b)->nb < min_of_stack(a))
-			min_max_a(a, b, fl);
-		pos = find_pos_in_a(a, b);
-		baraban_a(a, b, fl, pos);
-		pa(&*a, &*b, fl);
-	}
-	min = min_of_stack(a);
-	pos = count_step(&*a, min);
-	baraban_a(a, b, fl, pos);
-}
