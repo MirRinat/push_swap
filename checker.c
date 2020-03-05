@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl)
 {
@@ -40,7 +40,7 @@ void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl)
 		print_error(a, b);
 }
 
-void			more_int(long long int nb, t_stack **a, t_stack **b)
+void			more_int(long long int nb)
 {
 	if (nb > 2147483647 || nb < -2147483648)
 	{
@@ -71,7 +71,7 @@ long long		ft_atoi_ps(const char *str, t_stack **a, t_stack **b)
 		if (!ft_isdigit(*str))
 			print_error(a, b);
 		nb = nb * 10 + (*str - '0');
-		more_int(nb * r, a, b);
+		more_int(nb * r);
 		str++;
 	}
 	return (nb * r);

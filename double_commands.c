@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 void	ss_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {

@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "includes/push_swap.h"
 
 void		print_bonus(t_stack *a, t_stack *b, t_bonus *fl)
 {
-	ft_printf("Command %s\n", (fl)->command);
-	ft_printf("Stack A: [ ");
+	ft_printf("\x1B[35mCommand\x1B[0m %s\n", (fl)->command);
+	ft_putstr("\x1B[31mstack A:\x1B[0m [ ");
 	if (a)
 	{
 		while (a->next)
@@ -25,7 +25,7 @@ void		print_bonus(t_stack *a, t_stack *b, t_bonus *fl)
 		}
 		ft_printf("%d ", a->nb);
 	}
-	ft_printf("]\n\n%s", "Stack B: [ ");
+	ft_printf("]\n\n%s", "\x1B[31mstack B:\x1B[0m [ ");
 	if (b != NULL)
 	{
 		while (b->next != NULL)
@@ -38,7 +38,7 @@ void		print_bonus(t_stack *a, t_stack *b, t_bonus *fl)
 	ft_printf("]\n\n");
 }
 
-t_bonus		*init_struct(int argc, char **argv, t_bonus *fl)
+t_bonus		*init_struct(char **argv, t_bonus *fl)
 {
 	fl = (t_bonus *)malloc(sizeof(t_bonus));
 	(fl)->command = "";
@@ -53,11 +53,12 @@ t_bonus		*init_struct(int argc, char **argv, t_bonus *fl)
 		free(fl);
 		exit(1);
 	}
+	return (fl);
 }
 
-t_bonus		*parse_flags(int argc, char **argv, t_bonus *fl)
+t_bonus		*parse_flags(char **argv, t_bonus *fl)
 {
-	fl = init_struct(argc, argv, fl);
+	fl = init_struct(argv, fl);
 	if (argv[1] && (!ft_strcmp(argv[1], "-v") \
 	|| !ft_strcmp(argv[1], "--clear")))
 	{
