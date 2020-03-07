@@ -93,6 +93,6 @@ void				print_ok(t_stack **a, t_stack **b);
 void				print_ko(t_stack **a, t_stack **b);
 void				print_error(t_stack **a, t_stack **b);
 void				print_bonus(t_stack *a, t_stack *b, t_bonus *fl);
-t_bonus				*parse_flags(char **argv, t_bonus *fl);
+int 				parse_flags(char **argv, t_bonus *fl);
 
 #endif

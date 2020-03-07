@@ -16,17 +16,17 @@ int			main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
-	t_bonus *fl;
+	t_bonus fl;
 
-	fl = (t_bonus *)malloc(sizeof(t_bonus));
+//	fl = (t_bonus *)malloc(sizeof(t_bonus));
 	if (argc < 2)
 		return (0);
-	a = create_stack(&a, argv, argc, fl);
+	a = create_stack(&a, argv, argc, &fl);
 	b = NULL;
 	if (a == NULL)
 		return (0);
-	parse_command(&a, &b, fl);
-	free(fl);
+	parse_command(&a, &b, &fl);
+//	free(fl);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);

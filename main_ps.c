@@ -32,24 +32,25 @@ int			main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	t_stack	*head;
-	t_bonus	*fl;
+	t_bonus	fl;
 	int		count_a;
 
 	b = NULL;
-	fl = NULL;
-	fl = parse_flags(argv, fl);
+//	fl = NULL;
+	parse_flags(argv, &fl);
 	if (argc >= 2)
-		a = create_stack(&head, argv, argc, fl);
+		a = create_stack(&head, argv, argc, &fl);
 	else
-		return (ft_printf("Info: ./push_swap --help\n"));
+		return (0);
+//		return (ft_printf("Info: ./push_swap --help\n"));
 	count_a = lst_count(&a);
-	if (fl->flag_v && if_sorted(&a, &b))
+	if (fl.flag_v && if_sorted(&a, &b))
 	{
-		print_bonus(a, b, fl);
+		print_bonus(a, b, &fl);
 		return (0);
 	}
-	a = sort(a, b, count_a, fl);
-	free(fl);
+	a = sort(a, b, count_a, &fl);
+//	free(&fl);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
