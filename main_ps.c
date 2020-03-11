@@ -12,6 +12,156 @@
 
 #include "includes/push_swap.h"
 
+
+unsigned long long	to_power(unsigned long long a, int power)
+{
+    if (power == 0)
+        return (1);
+    a = a * to_power(a, power - 1);
+    return (a);
+}
+
+
+int			*ft_digitmass_cpy(int *stack, int size)
+{
+    int		*s_a;
+    int		i;
+
+    i = 0;
+    s_a = (int*)malloc(sizeof(int) * size);
+    if (!s_a)
+        return (NULL);
+    while (i < size)
+    {
+        s_a[i] = stack[i];
+        i++;
+    }
+    return (s_a);
+}
+
+static int				dupl_zero(int *stack_a, int size)
+{
+    int					i;
+    int					count_z;
+
+    i = 0;
+    count_z = 0;
+    while (i < size)
+    {
+        if (stack_a[i++] == 0)
+        {
+            count_z++;
+            if (count_z > 1)
+                return (1);
+        }
+    }
+    return (0);
+}
+
+static int				check_order(int *stack, int **stack_a,
+                                      int size, char programm)
+{
+    int					i;
+
+    i = 0;
+    if (dupl_zero(stack, size) == 1)
+        return (-1);
+    while (i < (size - 1))
+    {
+        if (stack[i] > stack[i + 1])
+        {
+            if (!(*stack_a = ft_digitmass_cpy(stack, size)))
+                return (-1);
+            return (size);
+        }
+        i++;
+    }
+    if (programm == 'c')
+    {
+        if (!(*stack_a = ft_digitmass_cpy(stack, size)))
+            return (-1);
+        return (size);
+    }
+    return (0);
+}
+
+static int				define_num(char ***a, int minus)
+{
+    char				*star;
+    long				result;
+    long				rank_count;
+
+    star = **a;
+    result = 0;
+    while (***a >= 48 && ***a <= 57 && ***a != '\0')
+        (**a)++;
+    while (*star == '0' && *(star + 1) == '0' && *star)
+        (star)++;
+    if (***a != ' ' && ***a != '\0')
+        exit(ft_printf("Error\n"));
+    if (**a - star - 1 > 10)
+        exit(ft_printf("Error\n"));
+    rank_count = to_power(10, (**a - star - 1));
+    while (rank_count > 0)
+    {
+        result += (*star - 48) * rank_count;
+        star++;
+        rank_count /= 10;
+    }
+    result *= (minus > 0) ? -1 : 1;
+    if (result >= 2147483648 || result <= -2147483649)
+        exit(ft_printf("Error\n"));
+    return (result);
+}
+
+static int				check_minus(char ***a)
+{
+    int					minus;
+    int					plus;
+
+    minus = 0;
+    plus = 0;
+    while (!(***a >= 48 && ***a <= 57) && ft_memchr("+-", ***a, 2))
+    {
+        minus = (***a == '-') ? minus + 1 : minus;
+        plus = (***a == '+') ? plus + 1 : plus;
+        if ((plus && minus) || plus > 1 || minus > 1)
+            return (-1);
+        (**a)++;
+    }
+    if (!(***a >= 48 && ***a <= 57))
+        return (-1);
+    return (minus);
+}
+
+int						parse_stack(char **a, int **stack_a,char programm)
+{
+    int					stack[1500];
+    int					minus;
+    int					size;
+
+    size = 0;
+    a++;
+    ft_bzero(stack, sizeof(int) * 1500);
+    while (*a != NULL)
+    {
+        while (**a != '\0')
+        {
+            while (**a == ' ')
+                (*a)++;
+            if (**a == '\0')
+                break ;
+            if ((minus = check_minus(&a)) == -1)
+                return (-1);
+            stack[size++] = define_num(&a, minus);
+        }
+        a++;
+    }
+    size = check_order(stack, stack_a, size, programm);
+    return (size);
+}
+
+
 t_stack		*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl)
 {
 	if (if_sorted(&a, &b))
@@ -27,28 +177,32 @@ t_stack		*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl)
 	return (a);
 }
 
-int			main(int argc, char **argv)
-{
-	t_stack	*a;
-	t_stack	*b;
-	t_stack	*head;
-	t_bonus	fl;
-	int		count_a;
-
-	b = NULL;
-	parse_flags(argv, &fl);
-	if (argc >= 2)
-		a = create_stack(&head, argv, argc, &fl);
-	else
-		return (0);
-	count_a = lst_count(&a);
-	if (fl.flag_v && if_sorted(&a, &b))
-	{
-		print_bonus(a, b, &fl);
-		return (0);
-	}
-	a = sort(a, b, count_a, &fl);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
-}
+//int			main(int argc, char **argv)
+//{
+//	t_stack	*a;
+//	t_stack	*b;
+//	t_bonus	fl;
+//	int size;
+//	int *stack_a;
+//	int		count_a;
+//
+////    a = NULL;
+////	b = NULL;
+//	parse_flags(argv, &fl);
+//    size = parse_stack(argv, &stack_a,'p');
+//	if (argc >= 2)
+//		a = create_stack(&a, argc, &fl, stack_a);
+//	else
+//		return (ft_printf("Error\n"));
+//	count_a = lst_count(&a);
+//	if (fl.flag_v && if_sorted(&a, &b))
+//	{
+//		print_bonus(a, b, &fl);
+//		return (0);
+//	}
+//	if (size > 0)
+//	    a = sort(a, b, count_a, &fl);
+//	free_stack(&a);
+//	free_stack(&b);
+//	return (0);
+//}

@@ -16,15 +16,16 @@ NAME2	= checker
 
 CFLAGS 	= -Wall -Wextra -Werror
 
-SRC1 	= main_ps.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
+SRC1 	= main_P_S.c main_ps.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
 
-SRC2 	= main_checker.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
+SRC2 	= main_checker.c main_ps.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
 
 LIBFT   = ./includes/libft
 
 OBJPATH = objects
 
 GREEN:="\033[1;32m"
+ANSI_COLOR_RESET:="\x1b[0m"
 
 OBJS1 	= $(addprefix $(OBJPATH)/,$(SRC1:.c=.o))
 
@@ -46,12 +47,12 @@ $(LIB_BINARY):
 
 $(NAME1): $(OBJS1) $(LIB_BINARY)
 	@gcc $(OBJS1) $(LIB_BINARY) -o $@
-	@echo $(GREEN)"     $(NAME1) is ready"
+	@echo $(GREEN)"     $(NAME1) is ready"$(ANSI_COLOR_RESET)
 
 
 $(NAME2): $(OBJS2) $(LIB_BINARY)
 	@gcc $(OBJS2) $(LIB_BINARY) -o $@
-	@echo $(GREEN)"     $(NAME2) is ready"
+	@echo $(GREEN)"     $(NAME2) is ready"$(ANSI_COLOR_RESET)
 
 
 clean:
