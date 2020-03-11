@@ -40,7 +40,6 @@ void		print_bonus(t_stack *a, t_stack *b, t_bonus *fl)
 
 void	init_struct(char **argv, t_bonus *fl)
 {
-//	fl = (t_bonus *)malloc(sizeof(t_bonus));
 	fl->command = "";
 	fl->flag_v = 0;
 	fl->count_flag = 0;
@@ -50,10 +49,8 @@ void	init_struct(char **argv, t_bonus *fl)
 		ft_printf("./push_swap (unsorted stack)\tSort stack\n\n"\
 		"-v\t\tPrint stacks after command\n"\
 		"--clear\t\tClear window before sorting stacks\n");
-//		free(fl);
 		exit(1);
 	}
-//	return (fl);
 }
 
 int		parse_flags(char **argv, t_bonus *fl)
@@ -65,7 +62,6 @@ int		parse_flags(char **argv, t_bonus *fl)
 		if (!argv[2])
 		{
 			ft_putstr("\033[31mError\033[0m\n");
-//			free(fl);
 			exit(1);
 		}
 		(fl)->count_flag++;
@@ -78,6 +74,5 @@ int		parse_flags(char **argv, t_bonus *fl)
 		fl->count_flag++;
 		system("clear");
 	}
-//	return (fl);
 	return (0);
 }

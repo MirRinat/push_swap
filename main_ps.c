@@ -36,13 +36,11 @@ int			main(int argc, char **argv)
 	int		count_a;
 
 	b = NULL;
-//	fl = NULL;
 	parse_flags(argv, &fl);
 	if (argc >= 2)
 		a = create_stack(&head, argv, argc, &fl);
 	else
 		return (0);
-//		return (ft_printf("Info: ./push_swap --help\n"));
 	count_a = lst_count(&a);
 	if (fl.flag_v && if_sorted(&a, &b))
 	{
@@ -50,7 +48,6 @@ int			main(int argc, char **argv)
 		return (0);
 	}
 	a = sort(a, b, count_a, &fl);
-//	free(&fl);
 	free_stack(&a);
 	free_stack(&b);
 	return (0);
