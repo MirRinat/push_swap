@@ -20,13 +20,17 @@ int			main(int argc, char **argv)
 	int *stack_a;
 	int size;
 
-	size = parse_stack(argv,&stack_a,'p');
-	if (argc < 2)
+	size = -2;
+	stack_a = NULL;
+	if (argc == 1)
 		return (0);
-	a = create_stack(&a, argc, &fl,stack_a);
-	b = NULL;
-	if (a == NULL)
+	size = parse_stack(argv,&stack_a,'c');
+	if (size == -1)
+	{
+		ft_printf("Error\n");
 		return (0);
+	}
+	a = create_stack(&a, size, &fl,stack_a);
 	parse_command(&a, &b, &fl);
 	free_stack(&a);
 	free_stack(&b);

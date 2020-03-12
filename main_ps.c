@@ -13,13 +13,7 @@
 #include "includes/push_swap.h"
 
 
-unsigned long long	to_power(unsigned long long a, int power)
-{
-    if (power == 0)
-        return (1);
-    a = a * to_power(a, power - 1);
-    return (a);
-}
+
 
 
 int			*ft_digitmass_cpy(int *stack, int size)
@@ -76,13 +70,13 @@ static int				check_order(int *stack, int **stack_a,
         }
         i++;
     }
-    if (programm == 'c')
-    {
-        if (!(*stack_a = ft_digitmass_cpy(stack, size)))
-            return (-1);
-        return (size);
-    }
-    return (0);
+	if (programm == 'c')
+	{
+		if (!(*stack_a = ft_digitmass_cpy(stack, size)))
+			return (-1);
+		return (size);
+	}
+	return (0);
 }
 
 static int				define_num(char ***a, int minus)
@@ -101,7 +95,7 @@ static int				define_num(char ***a, int minus)
         exit(ft_printf("Error\n"));
     if (**a - star - 1 > 10)
         exit(ft_printf("Error\n"));
-    rank_count = to_power(10, (**a - star - 1));
+    rank_count = ft_to_power(10, (**a - star - 1));
     while (rank_count > 0)
     {
         result += (*star - 48) * rank_count;
@@ -134,7 +128,7 @@ static int				check_minus(char ***a)
     return (minus);
 }
 
-int						parse_stack(char **a, int **stack_a,char programm)
+int						parse_stack(char **a, int **stack_a, char programm)
 {
     int					stack[1500];
     int					minus;
@@ -157,7 +151,7 @@ int						parse_stack(char **a, int **stack_a,char programm)
         }
         a++;
     }
-    size = check_order(stack, stack_a, size, programm);
+    size = check_order(stack, stack_a, size,programm);
     return (size);
 }
 
@@ -176,33 +170,3 @@ t_stack		*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl)
 		sorting(&a, &b, fl, count_a);
 	return (a);
 }
-
-//int			main(int argc, char **argv)
-//{
-//	t_stack	*a;
-//	t_stack	*b;
-//	t_bonus	fl;
-//	int size;
-//	int *stack_a;
-//	int		count_a;
-//
-////    a = NULL;
-////	b = NULL;
-//	parse_flags(argv, &fl);
-//    size = parse_stack(argv, &stack_a,'p');
-//	if (argc >= 2)
-//		a = create_stack(&a, argc, &fl, stack_a);
-//	else
-//		return (ft_printf("Error\n"));
-//	count_a = lst_count(&a);
-//	if (fl.flag_v && if_sorted(&a, &b))
-//	{
-//		print_bonus(a, b, &fl);
-//		return (0);
-//	}
-//	if (size > 0)
-//	    a = sort(a, b, count_a, &fl);
-//	free_stack(&a);
-//	free_stack(&b);
-//	return (0);
-//}

@@ -27,26 +27,22 @@ int			main(int argc, char **argv)
     int *stack_a;
     int		count_a;
 
-//    a = NULL;
-//	b = NULL;
-	argc = 5;
+	stack_a =NULL;
+	if (argc == 1)
+		return (0);
     parse_flags(argv, &fl);
     size = parse_stack(argv, &stack_a,'p');
-//    if (argc >= 2)
-//    print_mas(stack_a);
-    a = create_stack(&a, argc, &fl, stack_a);
-//    else
-//        return (ft_printf("Error\n"));
-//    print_list(a);
+    a = create_stack(&a, size, &fl, stack_a);
     count_a = lst_count(&a);
     if (fl.flag_v && if_sorted(&a, &b))
     {
         print_bonus(a, b, &fl);
         return (0);
     }
-    if (size > 0)
+    if (count_a > 0)
         a = sort(a, b, count_a, &fl);
     free_stack(&a);
     free_stack(&b);
+ //   free(stack_a);
     return (0);
 }
