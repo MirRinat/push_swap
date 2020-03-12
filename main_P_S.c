@@ -30,7 +30,11 @@ int			main(int argc, char **argv)
 	stack_a = NULL;
 	if (argc == 1)
 		return (0);
-    parse_flags(argv, &fl);
+	if (!ft_strcmp(argv[1],"-v"))
+	{
+		parse_flags(argv, &fl);
+		argv++;
+	}
     size = parse_stack(argv, &stack_a,'p');
     a = create_stack(&a, size, &fl, stack_a);
     count_a = lst_count(&a);

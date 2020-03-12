@@ -45,8 +45,6 @@ t_stack		*create_stack(t_stack **head, int argc, t_bonus *fl, int *stack_a)
 		i = fl->count_flag + 1;
 	while (i < argc)
 	{
-//		append_stack(&a, ft_atoi_ps(argv[i], &a, &b));
-//		check_duplicate(a, b, ft_atoi_ps(argv[i], &a, &b));
         append_stack(&a, stack_a[i]);
         check_duplicate(a, b, stack_a[i]);
 		i++;
