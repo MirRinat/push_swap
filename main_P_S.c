@@ -27,7 +27,7 @@ int			main(int argc, char **argv)
     int *stack_a;
     int		count_a;
 
-	stack_a =NULL;
+	stack_a = NULL;
 	if (argc == 1)
 		return (0);
     parse_flags(argv, &fl);
@@ -43,6 +43,6 @@ int			main(int argc, char **argv)
         a = sort(a, b, count_a, &fl);
     free_stack(&a);
     free_stack(&b);
- //   free(stack_a);
+    free(stack_a);
     return (0);
 }

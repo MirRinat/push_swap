@@ -20,7 +20,6 @@ int			main(int argc, char **argv)
 	int *stack_a;
 	int size;
 
-	size = -2;
 	stack_a = NULL;
 	if (argc == 1)
 		return (0);
@@ -28,6 +27,7 @@ int			main(int argc, char **argv)
 	if (size == -1)
 	{
 		ft_printf("Error\n");
+		free(stack_a);
 		return (0);
 	}
 	a = create_stack(&a, size, &fl,stack_a);
