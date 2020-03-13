@@ -30,7 +30,7 @@ void			print_ko(t_stack **a, t_stack **b)
 
 void			print_error(t_stack **a, t_stack **b)
 {
-	ft_putstr("\033[31mError!!!!\033[0m\n");
+	ft_putstr("\033[31mError\033[0m\n");
 	free_stack(a);
 	free_stack(b);
 	exit(1);

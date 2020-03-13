@@ -71,9 +71,9 @@ static int				define_num(char ***a, int minus)
 	while (*star == '0' && *(star + 1) == '0' && *star)
 		(star)++;
 	if (***a != ' ' && ***a != '\0')
-		exit(ft_printf("Error\n"));
+		exit(ft_printf("\033[31mError\033[0m\n"));
 	if (**a - star - 1 > 10)
-		exit(ft_printf("Error\n"));
+		exit(ft_printf("\033[31mError\033[0m\n"));
 	rank_count = ft_to_power(10, (**a - star - 1));
 	while (rank_count > 0)
 	{
@@ -83,7 +83,7 @@ static int				define_num(char ***a, int minus)
 	}
 	result *= (minus > 0) ? -1 : 1;
 	if (result >= 2147483648 || result <= -2147483649)
-		exit(ft_printf("Error\n"));
+		exit(ft_printf("\033[31mError\033[0m\n"));
 	return (result);
 }
 

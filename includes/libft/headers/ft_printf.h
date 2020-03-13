@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include "libft.h"
 
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 10000
 # define TYPE_HH 1
 # define TYPE_H 2
 # define TYPE_LL 4

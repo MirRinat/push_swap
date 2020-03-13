@@ -13,7 +13,8 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFF_SIZE  10000
+# define BUF_SIZE  10000
+# define GO 10240
 
 # include <fcntl.h>
 # include <sys/types.h>
