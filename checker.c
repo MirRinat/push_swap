@@ -79,7 +79,7 @@ long long		ft_atoi_ps(const char *str, t_stack **a, t_stack **b)
 
 void			check_duplicate(t_stack *a, t_stack *b, int nbr)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (a)
@@ -94,9 +94,9 @@ void			check_duplicate(t_stack *a, t_stack *b, int nbr)
 
 void			parse_command(t_stack **a, t_stack **b, t_bonus *fl)
 {
-	char *line;
+	char		*line;
 
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(0, &line))
 	{
 		if (ft_strequ(line, ""))
 			break ;

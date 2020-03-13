@@ -38,7 +38,7 @@ void		print_bonus(t_stack *a, t_stack *b, t_bonus *fl)
 	ft_printf("]\n\n");
 }
 
-void	init_struct(char **argv, t_bonus *fl)
+void		init_struct(char **argv, t_bonus *fl)
 {
 	fl->command = "";
 	fl->flag_v = 0;
@@ -46,30 +46,37 @@ void	init_struct(char **argv, t_bonus *fl)
 	if (argv[1] && !ft_strcmp(argv[1], "--help"))
 	{
 		fl->count_flag++;
-		ft_printf("./push_swap (unsorted stack)\tSort stack\n\n"\
+		ft_printf("./push_swap (unsorted stack)\tSort stack\n"
+			"./checker (unsorted stack)\tCheck commands\n\n"\
 		"-v\t\tPrint stacks after command\n"\
 		"--clear\t\tClear window before sorting stacks\n");
 		exit(1);
 	}
 }
 
-int		parse_flags(char **argv, t_bonus *fl)
+char		**parse_flags(char **argv, t_bonus *fl)
 {
+	char **ptr;
+
+	ptr = argv;
 	init_struct(argv, fl);
-	if (argv[1] && (!ft_strcmp(argv[1], "-v")))
+	if (argv[1] && (!ft_strcmp(argv[1], "-v") ||
+	(!ft_strcmp(argv[2], "--clear"))))
 	{
-		if (!argv[2])
+		if (!argv[2] && !argv[3])
 		{
 			ft_putstr("\033[31mError\033[0m\n");
 			exit(1);
 		}
 		(fl)->count_flag++;
 		(fl)->flag_v = 1;
+		ptr++;
 	}
-	if (argv[2] && (!ft_strcmp(argv[2], "--clear")))
+	if ((!ft_strcmp(argv[2], "--clear")))
 	{
 		fl->count_flag++;
 		system("clear");
+		ptr++;
 	}
-	return (0);
+	return (ptr);
 }

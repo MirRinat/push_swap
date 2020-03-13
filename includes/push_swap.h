@@ -17,7 +17,7 @@
 # include "libft/headers/get_next_line.h"
 # include "libft/headers/ft_printf.h"
 # include <stdio.h>
-# define INTERVAL_HUNDRED	6
+# define INTERVAL_HUNDRED	5
 # define INTERVAL_FIVE_HUNDRED	12
 # define INTERVAL_MORE	20
 # define BLACK	"\033[1;30m"
@@ -43,8 +43,6 @@ typedef struct		s_bonus
 	int				count_flag;
 }					t_bonus;
 void				print_list(t_stack *n);
-//t_stack				*create_stack(t_stack **head, char **argv, int argc,\
-//t_bonus *val);
 long long			ft_atoi_ps(const char *str, t_stack **a, t_stack **b);
 void				free_stack(t_stack **head);
 int					get_next_line(const int fd, char **line);
@@ -93,11 +91,9 @@ void				print_ok(t_stack **a, t_stack **b);
 void				print_ko(t_stack **a, t_stack **b);
 void				print_error(t_stack **a, t_stack **b);
 void				print_bonus(t_stack *a, t_stack *b, t_bonus *fl);
-int 				parse_flags(char **argv, t_bonus *fl);
-t_stack		*create_stack(t_stack **head, int argc, t_bonus *fl, int *stack_a);
-
-
-int						parse_stack(char **a, int **stack_a,char programm);
-t_stack		*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl);
+char				**parse_flags(char **argv, t_bonus *fl);
+t_stack				*create_stack(t_stack **head, int argc, int *stack_a);
+int					parse_stack(char **a, int **stack_a, char programm);
+t_stack				*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl);
 
 #endif

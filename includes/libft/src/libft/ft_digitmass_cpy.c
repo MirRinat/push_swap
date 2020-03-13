@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_digitmass_cpy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bglinda <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 12:13:40 by bglinda           #+#    #+#             */
-/*   Updated: 2019/02/05 22:30:45 by bglinda          ###   ########.fr       */
+/*   Created: 2020/03/13 17:25:30 by bglinda           #+#    #+#             */
+/*   Updated: 2020/03/13 17:25:40 by bglinda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int			*ft_digitmass_cpy(int *stack, int size)
 {
-	int i;
+	int		*s_a;
+	int		i;
 
 	i = 0;
-	if (!s1 || !s2)
-		return (1);
-	while (s1[i] == s2[i] && s2[i] && s1[i])
+	s_a = (int*)malloc(sizeof(int) * size);
+	if (!s_a)
+		return (NULL);
+	while (i < size)
+	{
+		s_a[i] = stack[i];
 		i++;
-	return (*(unsigned char const *)(s1 + i) -
-	*(unsigned char const *)(s2 + i));
+	}
+	return (s_a);
 }

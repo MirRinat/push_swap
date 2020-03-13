@@ -16,7 +16,7 @@ void		pa_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {
 	t_stack	*second;
 
-	if (*b == NULL || b == NULL)
+	if (*b == NULL)
 		return ;
 	second = (*b)->next;
 	(*b)->next = *a;

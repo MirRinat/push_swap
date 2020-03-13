@@ -16,9 +16,9 @@ NAME2	= checker
 
 CFLAGS 	= -Wall -Wextra -Werror
 
-SRC1 	= main_P_S.c main_ps.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
+SRC1 	= main_ps.c parse_mas.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
 
-SRC2 	= main_checker.c main_ps.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
+SRC2 	= main_checker.c parse_mas.c bonus.c checker.c create_stack.c double_commands.c get_next_line.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
 
 LIBFT   = ./includes/libft
 
