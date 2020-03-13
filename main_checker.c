@@ -35,7 +35,7 @@ int			main(int argc, char **argv)
 		size = parse_stack(argv, &stack_a, 'c');
 	if (size == -1)
 	{
-		ft_printf("Error\n");
+		ft_printf("\033[31mError\033[0m\n");
 		free(stack_a);
 		return (0);
 	}

@@ -43,7 +43,6 @@ int			main(int argc, char **argv)
 	int		*stack_a;
 
 	stack_a = NULL;
-	a = NULL;
 	b = NULL;
 	if (!ft_strcmp(argv[1], "-v") || !ft_strcmp(argv[1], "--help")
 	|| !ft_strcmp(argv[2], "--clear"))
@@ -51,13 +50,15 @@ int			main(int argc, char **argv)
 	size = parse_stack(argv, &stack_a, 'p');
 	if (argc >= 2)
 		a = create_stack(&a, size, stack_a);
-	if (a && fl.flag_v && if_sorted(&a, &b))
+	if (fl.flag_v && if_sorted(&a, &b))
 	{
 		print_bonus(a, b, &fl);
 		return (0);
 	}
 	if (size > 0)
 		a = sort(a, b, size, &fl);
+	else if (size < 0)
+		ft_printf("\033[31mError\033[0m\n");
 	fresh(a, b, stack_a);
 	return (0);
 }
