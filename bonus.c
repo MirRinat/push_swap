@@ -56,8 +56,7 @@ void	init_struct(char **argv, t_bonus *fl)
 int		parse_flags(char **argv, t_bonus *fl)
 {
 	init_struct(argv, fl);
-	if (argv[1] && (!ft_strcmp(argv[1], "-v") \
-	|| !ft_strcmp(argv[1], "--clear")))
+	if (argv[1] && (!ft_strcmp(argv[1], "-v")))
 	{
 		if (!argv[2])
 		{
@@ -65,11 +64,9 @@ int		parse_flags(char **argv, t_bonus *fl)
 			exit(1);
 		}
 		(fl)->count_flag++;
-		(fl)->flag_cl = 1;
 		(fl)->flag_v = 1;
 	}
-	if (argv[2] && (!ft_strcmp(argv[2], "--clear")\
-	|| !ft_strcmp(argv[2], "-v")))
+	if (argv[2] && (!ft_strcmp(argv[2], "--clear")))
 	{
 		fl->count_flag++;
 		system("clear");

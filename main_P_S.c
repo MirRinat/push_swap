@@ -30,10 +30,10 @@ int			main(int argc, char **argv)
 	stack_a = NULL;
 	if (argc == 1)
 		return (0);
-	if (!ft_strcmp(argv[1],"-v"))
+	if (!ft_strcmp(argv[1],"-v") && !ft_strcmp(argv[2],"--clear"))
 	{
 		parse_flags(argv, &fl);
-		argv++;
+		argv += 2;
 	}
     size = parse_stack(argv, &stack_a,'p');
     a = create_stack(&a, size, &fl, stack_a);

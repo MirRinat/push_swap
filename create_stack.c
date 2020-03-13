@@ -42,7 +42,7 @@ t_stack		*create_stack(t_stack **head, int argc, t_bonus *fl, int *stack_a)
 	b = NULL;
 	i = 0;
 	if (fl && (fl)->flag_v)
-		i = fl->count_flag + 1;
+		i = 0;//fl->count_flag + 1;
 	while (i < argc)
 	{
         append_stack(&a, stack_a[i]);
