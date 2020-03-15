@@ -12,25 +12,28 @@
 
 #include "includes/push_swap.h"
 
-void			print_ok(t_stack **a, t_stack **b)
+void			print_ok(t_stack **a, t_stack **b, int *stack_a)
 {
 	ft_putstr("\033[32mOK\033[0m\n");
+	free(stack_a);
 	free_stack(a);
 	free_stack(b);
 	exit(1);
 }
 
-void			print_ko(t_stack **a, t_stack **b)
+void			print_ko(t_stack **a, t_stack **b, int *stack_a)
 {
 	ft_putstr("\033[31mKO\033[0m\n");
+	free(stack_a);
 	free_stack(a);
 	free_stack(b);
 	exit(1);
 }
 
-void			print_error(t_stack **a, t_stack **b)
+void			print_error(t_stack **a, t_stack **b, int *stack_a)
 {
 	ft_putstr("\033[31mError\033[0m\n");
+	free(stack_a);
 	free_stack(a);
 	free_stack(b);
 	exit(1);

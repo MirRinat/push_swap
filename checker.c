@@ -12,7 +12,7 @@
 
 #include "includes/push_swap.h"
 
-void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl)
+void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl, int *stack_a)
 {
 	if (!ft_strcmp(str, "sa"))
 		sa_nw(a, b, fl);
@@ -37,7 +37,7 @@ void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl)
 	else if (!ft_strcmp(str, "rrr"))
 		rrr_nw(a, b, fl);
 	else
-		print_error(a, b);
+		print_error(a, b,stack_a);
 }
 
 void			more_int(long long int nb)
@@ -49,7 +49,7 @@ void			more_int(long long int nb)
 	}
 }
 
-long long		ft_atoi_ps(const char *str, t_stack **a, t_stack **b)
+long long		ft_atoi_ps(const char *str, t_stack **a, t_stack **b, int *stack_a)
 {
 	long long	r;
 	long long	nb;
@@ -64,12 +64,12 @@ long long		ft_atoi_ps(const char *str, t_stack **a, t_stack **b)
 			r = -1;
 		str++;
 		if (!ft_isdigit(*str))
-			print_error(a, b);
+			print_error(a, b, stack_a);
 	}
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
-			print_error(a, b);
+			print_error(a, b, stack_a);
 		nb = nb * 10 + (*str - '0');
 		more_int(nb * r);
 		str++;
@@ -77,7 +77,7 @@ long long		ft_atoi_ps(const char *str, t_stack **a, t_stack **b)
 	return (nb * r);
 }
 
-void			check_duplicate(t_stack *a, t_stack *b, int nbr)
+void			check_duplicate(t_stack *a, t_stack *b, int nbr, int *stack_a)
 {
 	int			i;
 
@@ -89,10 +89,10 @@ void			check_duplicate(t_stack *a, t_stack *b, int nbr)
 		a = a->next;
 	}
 	if (i >= 2)
-		print_error(&a, &b);
+		print_error(&a, &b, stack_a);
 }
 
-void			parse_command(t_stack **a, t_stack **b, t_bonus *fl)
+void			parse_command(t_stack **a, t_stack **b, t_bonus *fl, int *stack_a)
 {
 	char		*line;
 
@@ -100,11 +100,11 @@ void			parse_command(t_stack **a, t_stack **b, t_bonus *fl)
 	{
 		if (ft_strequ(line, ""))
 			break ;
-		what_command(line, a, b, fl);
+		what_command(line, a, b, fl, stack_a);
 		free(line);
 	}
 	if (if_sorted(a, b))
-		print_ok(a, b);
+		print_ok(a, b,stack_a);
 	else
-		print_ko(a, b);
+		print_ko(a, b,stack_a);
 }
