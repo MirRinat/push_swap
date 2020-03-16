@@ -43,12 +43,13 @@ typedef struct		s_bonus
 	int				count_flag;
 }					t_bonus;
 void				print_list(t_stack *n);
-long long		    ft_atoi_ps(char ***str, t_stack **a, t_stack **b, int *stack_a);
+long long			ft_atoi_ps(char ***str, t_stack **a, t_stack **b);
 void				free_stack(t_stack **head);
 int					get_next_line(const int fd, char **line);
-void				parse_command(t_stack **a, t_stack **b, t_bonus *fl, int *stack_a);
+void				parse_command(t_stack **a, t_stack **b, t_bonus *fl,
+		int *stack_a);
 void				more_int(long long int nb);
-void				check_duplicate(t_stack *a, t_stack *b, int nbr, int *stack_a);
+void				check_duplicate(t_stack *a, t_stack *b, int nbr);
 int					lst_count(t_stack **a);
 void				sa(t_stack **a, t_stack **b, t_bonus *fl);
 void				sb(t_stack **b, t_stack **a, t_bonus *fl);
@@ -88,12 +89,12 @@ int					min_of_stack(t_stack **head);
 int					max_of_stack(t_stack **head);
 void				print_ok(t_stack **a, t_stack **b, int *stack_a);
 void				print_ko(t_stack **a, t_stack **b, int *stack_a);
-void				print_error(t_stack **a, t_stack **b, int *stack_a);
+void				print_error(t_stack **a, t_stack **b);
 void				print_bonus(t_stack *a, t_stack *b, t_bonus *fl);
 char				**parse_flags(char **argv, t_bonus *fl);
 t_stack				*create_stack(t_stack **head, int argc, int *stack_a);
 int					parse_stack(char **a, int **stack_a, char programm);
 t_stack				*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl);
-char		        **parse_flags_c(char **argv, t_bonus *fl);
+char				**parse_flags_c(char **argv, t_bonus *fl);
 
 #endif

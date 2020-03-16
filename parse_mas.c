@@ -12,7 +12,6 @@
 
 #include "includes/push_swap.h"
 
-
 static int				check_order(int *stack, int **stack_a,
 		int size, char programm)
 {
@@ -77,9 +76,9 @@ static int				check_minus(char ***a)
 	while (!(***a >= 48 && ***a <= 57) && ft_memchr("+-", ***a, 2))
 	{
 		if (***a == '-')
-		        minus = minus + 1;
+			minus = minus + 1;
 		if (***a == '+')
-		    plus = plus + 1;
+			plus = plus + 1;
 		if ((plus && minus) || plus > 1 || minus > 1)
 			return (-1);
 		(**a)++;

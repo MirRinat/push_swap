@@ -12,7 +12,7 @@
 
 #include "includes/push_swap.h"
 
-void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl, int *stack_a)
+void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl)
 {
 	if (!ft_strcmp(str, "sa"))
 		sa_nw(a, b, fl);
@@ -37,7 +37,7 @@ void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl, int *stack
 	else if (!ft_strcmp(str, "rrr"))
 		rrr_nw(a, b, fl);
 	else
-		print_error(a, b,stack_a);
+		print_error(a, b);
 }
 
 void			more_int(long long int nb)
@@ -49,7 +49,7 @@ void			more_int(long long int nb)
 	}
 }
 
-long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b, int *stack_a)
+long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b)
 {
 	long long	r;
 	long long	nb;
@@ -62,22 +62,22 @@ long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b, int *stack_a)
 	{
 		if (***str == '-')
 			r = -1;
-        (**str)++;
+		(**str)++;
 		if (!ft_isdigit(***str))
-			print_error(a, b, stack_a);
+			print_error(a, b);
 	}
 	while (***str)
 	{
 		if (!ft_isdigit(***str))
-			print_error(a, b, stack_a);
+			print_error(a, b);
 		nb = nb * 10 + (***str - '0');
 		more_int(nb * r);
-        (**str)++;
+		(**str)++;
 	}
 	return (nb * r);
 }
 
-void			check_duplicate(t_stack *a, t_stack *b, int nbr, int *stack_a)
+void			check_duplicate(t_stack *a, t_stack *b, int nbr)
 {
 	int			i;
 
@@ -89,10 +89,11 @@ void			check_duplicate(t_stack *a, t_stack *b, int nbr, int *stack_a)
 		a = a->next;
 	}
 	if (i >= 2)
-		print_error(&a, &b, stack_a);
+		print_error(&a, &b);
 }
 
-void			parse_command(t_stack **a, t_stack **b, t_bonus *fl, int *stack_a)
+void			parse_command(t_stack **a, t_stack **b, t_bonus *fl,
+		int *stack_a)
 {
 	char		*line;
 
@@ -100,13 +101,13 @@ void			parse_command(t_stack **a, t_stack **b, t_bonus *fl, int *stack_a)
 	{
 		if (ft_strequ(line, ""))
 			break ;
-		what_command(line, a, b, fl, stack_a);
+		what_command(line, a, b, fl);
 		if (fl->flag_ch)
-		    print_bonus(*a,*b,fl);
+			print_bonus(*a, *b, fl);
 		free(line);
 	}
 	if (if_sorted(a, b))
-		print_ok(a, b,stack_a);
+		print_ok(a, b, stack_a);
 	else
-		print_ko(a, b,stack_a);
+		print_ko(a, b, stack_a);
 }
