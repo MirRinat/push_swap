@@ -12,24 +12,6 @@
 
 #include "includes/push_swap.h"
 
-static int				dupl_zero(int *stack_a, int size)
-{
-	int					i;
-	int					count_z;
-
-	i = 0;
-	count_z = 0;
-	while (i < size)
-	{
-		if (stack_a[i++] == 0)
-		{
-			count_z++;
-			if (count_z > 1)
-				return (1);
-		}
-	}
-	return (0);
-}
 
 static int				check_order(int *stack, int **stack_a,
 		int size, char programm)
@@ -37,8 +19,6 @@ static int				check_order(int *stack, int **stack_a,
 	int					i;
 
 	i = 0;
-	if (dupl_zero(stack, size) == 1)
-		return (-1);
 	while (i < (size - 1))
 	{
 		if (stack[i] > stack[i + 1])
@@ -58,34 +38,34 @@ static int				check_order(int *stack, int **stack_a,
 	return (0);
 }
 
-//static int				define_num(char ***a, int minus)
-//{
-//	char				*star;
-//	long				result;
-//	long				rank_count;
-//
-//	star = **a;
-//	result = 0;
-//	while (***a >= 48 && ***a <= 57 && ***a != '\0')
-//		(**a)++;
-//	while (*star == '0' && *(star + 1) == '0' && *star)
-//		(star)++;
-//	if (***a != ' ' && ***a != '\0')
-//		exit(ft_printf("\033[31mError\033[0m\n"));
-//	if (**a - star - 1 > 10)
-//		exit(ft_printf("\033[31mError\033[0m\n"));
-//	rank_count = ft_to_power(10, (**a - star - 1));
-//	while (rank_count > 0)
-//	{
-//		result += (*star - 48) * rank_count;
-//		star++;
-//		rank_count /= 10;
-//	}
-//	result *= (minus > 0) ? -1 : 1;
-//	if (result >= 2147483648 || result <= -2147483649)
-//		exit(ft_printf("\033[31mError\033[0m\n"));
-//	return (result);
-//}
+static int				ft_atoi_p(char ***a, int minus)
+{
+	char				*star;
+	long				result;
+	long				rank_count;
+
+	star = **a;
+	result = 0;
+	while (***a >= '0' && ***a <= '9' && ***a != '\0')
+		(**a)++;
+	while (*star == '0' && *(star + 1) == '0' && *star)
+		(star)++;
+	if (***a != ' ' && ***a != '\0')
+		exit(ft_printf("\033[31mError\033[0m\n"));
+	if (**a - star - 1 > 10)
+		exit(ft_printf("\033[31mError\033[0m\n"));
+	rank_count = ft_to_power(10, (**a - star - 1));
+	while (rank_count > 0)
+	{
+		result += (*star - '0') * rank_count;
+		star++;
+		rank_count /= 10;
+	}
+	result *= (minus > 0) ? -1 : 1;
+	if (result >= 2147483648 || result <= -2147483649)
+		exit(ft_printf("\033[31mError\033[0m\n"));
+	return (result);
+}
 
 static int				check_minus(char ***a)
 {
@@ -96,8 +76,10 @@ static int				check_minus(char ***a)
 	plus = 0;
 	while (!(***a >= 48 && ***a <= 57) && ft_memchr("+-", ***a, 2))
 	{
-		minus = (***a == '-') ? minus + 1 : minus;
-		plus = (***a == '+') ? plus + 1 : plus;
+		if (***a == '-')
+		        minus = minus + 1;
+		if (***a == '+')
+		    plus = plus + 1;
 		if ((plus && minus) || plus > 1 || minus > 1)
 			return (-1);
 		(**a)++;
@@ -112,8 +94,7 @@ int						parse_stack(char **a, int **stack_a, char programm)
 	int					stack[1500];
 	int					minus;
 	int					size;
-	t_stack *aq = NULL;
-	t_stack *bq = NULL;
+
 	size = 0;
 	a++;
 	ft_bzero(stack, sizeof(int) * 1500);
@@ -127,8 +108,7 @@ int						parse_stack(char **a, int **stack_a, char programm)
 				break ;
 			if ((minus = check_minus(&a)) == -1)
 				return (-1);
-			//stack[size++] = define_num(&a, minus);
-            stack[size++] = ft_atoi_ps(&a,&aq,&bq,*stack_a);
+			stack[size++] = ft_atoi_p(&a, minus);
 		}
 		a++;
 	}

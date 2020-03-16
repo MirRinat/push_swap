@@ -56,8 +56,8 @@ long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b, int *stack_a)
 
 	r = 1;
 	nb = 0;
-//	while ((***str >= 9 && ***str <= 13) || ***str == 32)
-//		str++;
+	while ((***str >= 9 && ***str <= 13) || ***str == 32)
+		str++;
 	if (***str == '-' || ***str == '+')
 	{
 		if (***str == '-')
@@ -68,8 +68,8 @@ long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b, int *stack_a)
 	}
 	while (***str)
 	{
-//		if (!ft_isdigit(***str))
-//			print_error(a, b, stack_a);
+		if (!ft_isdigit(***str))
+			print_error(a, b, stack_a);
 		nb = nb * 10 + (***str - '0');
 		more_int(nb * r);
         (**str)++;
