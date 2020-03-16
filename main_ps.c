@@ -58,7 +58,8 @@ int			main(int argc, char **argv)
 	if (size > 0)
 		a = sort(a, b, size, &fl);
 	else if (size < 0)
-		ft_printf("\033[31mError\033[0m\n");
+//		write(1, "\033[31mError\\033[0m\n", ft_strlen("\033[31mError\033[0m\n"));
+		write(STDERR_FILENO, "\033[31mError\\033[0m\n", ft_strlen("\033[31mError\033[0m\n"));
 	fresh(a, b, stack_a);
 	return (0);
 }
