@@ -112,7 +112,8 @@ int						parse_stack(char **a, int **stack_a, char programm)
 	int					stack[1500];
 	int					minus;
 	int					size;
-
+	//t_stack *aq;// = NULL;
+	//t_stack *bq;// = NULL;
 	size = 0;
 	a++;
 	ft_bzero(stack, sizeof(int) * 1500);

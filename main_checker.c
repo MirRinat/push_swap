@@ -28,8 +28,8 @@ int			main(int argc, char **argv)
 	int		size;
 
 	size = -2;
-//	a = NULL;
-//	b = NULL;
+	a = NULL;
+	b = NULL;
 	stack_a = NULL;
 	if (argc == 1)
 		return (0);
@@ -39,8 +39,8 @@ int			main(int argc, char **argv)
 	{
 //		print_error(&a,&b,stack_a);
 		ft_printf("\033[31mError\033[0m\n");
-//		fresh_c(a,b,stack_a);
-		free(stack_a);
+		fresh_c(a,b,stack_a);
+//		free(stack_a);
 		return (0);
 	}
 	if (argc >= 2)
