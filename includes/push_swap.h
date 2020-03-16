@@ -39,7 +39,7 @@ typedef struct		s_bonus
 	char			*command;
 	int				flag_v;
 	int				flag_help;
-	int				flag_cl;
+	int				flag_ch;
 	int				count_flag;
 }					t_bonus;
 void				print_list(t_stack *n);
@@ -94,5 +94,6 @@ char				**parse_flags(char **argv, t_bonus *fl);
 t_stack				*create_stack(t_stack **head, int argc, int *stack_a);
 int					parse_stack(char **a, int **stack_a, char programm);
 t_stack				*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl);
+char		        **parse_flags_c(char **argv, t_bonus *fl);
 
 #endif

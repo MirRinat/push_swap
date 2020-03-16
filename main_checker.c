@@ -32,6 +32,9 @@ int			main(int argc, char **argv)
 	stack_a = NULL;
 	if (argc == 1)
 		return (0);
+    if (!ft_strcmp(argv[1], "-c") || !ft_strcmp(argv[1], "--help")
+        || !ft_strcmp(argv[2], "--clear"))
+        argv = parse_flags_c(argv, &fl);
 	size = parse_stack(argv, &stack_a, 'c');
 	if (size == -1)
 		print_error(&a,&b,stack_a);

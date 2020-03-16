@@ -101,6 +101,8 @@ void			parse_command(t_stack **a, t_stack **b, t_bonus *fl, int *stack_a)
 		if (ft_strequ(line, ""))
 			break ;
 		what_command(line, a, b, fl, stack_a);
+		if (fl->flag_ch)
+		    print_bonus(*a,*b,fl);
 		free(line);
 	}
 	if (if_sorted(a, b))

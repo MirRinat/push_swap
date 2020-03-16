@@ -49,7 +49,8 @@ void		init_struct(char **argv, t_bonus *fl)
 		ft_printf("./push_swap (unsorted stack)\tSort stack\n"
 			"./checker (unsorted stack)\tCheck commands\n\n"\
 		"-v\t\tPrint stacks after command\n"\
-		"--clear\t\tClear window before sorting stacks\n");
+		"--clear\t\tClear window before sorting stacks\n"
+  "-c\t\tView what command doing for checker\n");
 		exit(1);
 	}
 }
@@ -79,4 +80,31 @@ char		**parse_flags(char **argv, t_bonus *fl)
 		ptr++;
 	}
 	return (ptr);
+}
+
+char		**parse_flags_c(char **argv, t_bonus *fl)
+{
+    char **ptr;
+
+    ptr = argv;
+    init_struct(argv, fl);
+    if (argv[1] && (!ft_strcmp(argv[1], "-c") ||
+                    (!ft_strcmp(argv[2], "--clear"))))
+    {
+        if (!argv[2] && !argv[3])
+        {
+            ft_putstr("\033[31mError\033[0m\n");
+            exit(1);
+        }
+        (fl)->count_flag++;
+        (fl)->flag_ch = 1;
+        ptr++;
+    }
+    if ((!ft_strcmp(argv[2], "--clear")))
+    {
+        fl->count_flag++;
+        system("clear");
+        ptr++;
+    }
+    return (ptr);
 }
