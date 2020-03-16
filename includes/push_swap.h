@@ -43,7 +43,7 @@ typedef struct		s_bonus
 	int				count_flag;
 }					t_bonus;
 void				print_list(t_stack *n);
-long long			ft_atoi_ps(const char *str, t_stack **a, t_stack **b, int *stack_a);
+long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b, int *stack_a);
 void				free_stack(t_stack **head);
 int					get_next_line(const int fd, char **line);
 void				parse_command(t_stack **a, t_stack **b, t_bonus *fl, int *stack_a);
