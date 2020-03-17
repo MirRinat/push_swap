@@ -91,6 +91,8 @@ void			parse_command(t_stack **a, t_stack **b, t_bonus *fl,
 {
 	char		*line;
 
+	if (fl->flag_ch)
+		print_bonus(*a, *b, fl);
 	while (get_next_line(0, &line))
 	{
 		if (ft_strequ(line, ""))
