@@ -55,12 +55,14 @@ int valid_arg(int argc, char **argv)
 	int j;
 
 	i = 1;
+	if (argc == 1)
+		return (1);
 	while(i < argc)
 	{
 		j = 0;
 		while (argv[i][j] != '\0')
 		{
-			if (argv[i][j] > 32 && argv[i][j] < 127)
+			if (ft_isprint(argv[i][j]))
 				return (1);
 			j++;
 		}
