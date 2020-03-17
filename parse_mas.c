@@ -20,7 +20,7 @@ static int				check_order(int *stack, int **stack_a,
 	i = 0;
 	while (i < (size - 1))
 	{
-		if (stack[i] > stack[i + 1])
+		if (stack[i] >= stack[i + 1])
 		{
 			if (!(*stack_a = ft_digitmass_cpy(stack, size)))
 				return (-1);
@@ -50,9 +50,9 @@ static int				ft_atoi_p(char ***a, int minus)
 	while (*star == '0' && *(star + 1) == '0' && *star)
 		(star)++;
 	if (***a != ' ' && ***a != '\0')
-		exit(ft_printf("\033[31mError\033[0m\n"));
+		exit(write(STDERR_FILENO,"\033[31mError\033[0m\n", ft_strlen("\033[31mError\033[0m\n")));
 	if (**a - star - 1 > 10)
-		exit(ft_printf("\033[31mError\033[0m\n"));
+		exit(write(STDERR_FILENO,"\033[31mError\033[0m\n", ft_strlen("\033[31mError\033[0m\n")));
 	rank_count = ft_to_power(10, (**a - star - 1));
 	while (rank_count > 0)
 	{
@@ -62,7 +62,7 @@ static int				ft_atoi_p(char ***a, int minus)
 	}
 	result *= (minus > 0) ? -1 : 1;
 	if (result >= 2147483648 || result <= -2147483649)
-		exit(ft_printf("\033[31mError\033[0m\n"));
+		exit(write(STDERR_FILENO,"\033[31mError\033[0m\n", ft_strlen("\033[31mError\033[0m\n")));
 	return (result);
 }
 
@@ -90,13 +90,13 @@ static int				check_minus(char ***a)
 
 int						parse_stack(char **a, int **stack_a, char programm)
 {
-	int					stack[1500];
+	int					stack[15000];
 	int					minus;
 	int					size;
 
 	size = 0;
 	a++;
-	ft_bzero(stack, sizeof(int) * 1500);
+	ft_bzero(stack, sizeof(int) * 15000);
 	while (*a != NULL)
 	{
 		while (**a != '\0')

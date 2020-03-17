@@ -44,37 +44,29 @@ void			more_int(long long int nb)
 {
 	if (nb > 2147483647 || nb < -2147483648)
 	{
-		ft_putstr("\033[31mError\033[0m\n");
+		write_error();
 		exit(1);
 	}
 }
 
-long long		ft_atoi_ps(char ***str, t_stack **a, t_stack **b)
+int valid_arg(int argc, char **argv)
 {
-	long long	r;
-	long long	nb;
+	int i;
+	int j;
 
-	r = 1;
-	nb = 0;
-	while ((***str >= 9 && ***str <= 13) || ***str == 32)
-		str++;
-	if (***str == '-' || ***str == '+')
+	i = 1;
+	while(i < argc)
 	{
-		if (***str == '-')
-			r = -1;
-		(**str)++;
-		if (!ft_isdigit(***str))
-			print_error(a, b);
+		j = 0;
+		while (argv[i][j] != '\0')
+		{
+			if (argv[i][j] > 32 && argv[i][j] < 127)
+				return (1);
+			j++;
+		}
+		i++;
 	}
-	while (***str)
-	{
-		if (!ft_isdigit(***str))
-			print_error(a, b);
-		nb = nb * 10 + (***str - '0');
-		more_int(nb * r);
-		(**str)++;
-	}
-	return (nb * r);
+	return (0);
 }
 
 void			check_duplicate(t_stack *a, t_stack *b, int nbr)

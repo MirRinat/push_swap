@@ -32,7 +32,7 @@ void		sa_nw(t_stack **a, t_stack **b, t_bonus *fl)
 void		sb_nw(t_stack **a, t_stack **b, t_bonus *fl)
 {
 	fl->command = "sb\n";
-	sa_nw(b, a, fl);
+	sa_nw(a, b, fl);
 }
 
 void		sa(t_stack **a, t_stack **b, t_bonus *fl)
@@ -44,7 +44,7 @@ void		sa(t_stack **a, t_stack **b, t_bonus *fl)
 
 void		sb(t_stack **b, t_stack **a, t_bonus *fl)
 {
-	sb_nw(b, a, fl);
+	sb_nw(a, b, fl);
 	ft_putstr("sb\n");
 }
 

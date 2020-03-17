@@ -44,6 +44,8 @@ int			main(int argc, char **argv)
 
 	stack_a = NULL;
 	b = NULL;
+	if (valid_arg(argc,argv) == 0)
+		return (write_error());
 	if (!ft_strcmp(argv[1], "-v") || !ft_strcmp(argv[1], "--help")
 	|| !ft_strcmp(argv[2], "--clear"))
 		argv = parse_flags(argv, &fl);
@@ -58,8 +60,7 @@ int			main(int argc, char **argv)
 	if (size > 0)
 		a = sort(a, b, size, &fl);
 	else if (size < 0)
-//		write(1, "\033[31mError\\033[0m\n", ft_strlen("\033[31mError\033[0m\n"));
-		write(STDERR_FILENO, "\033[31mError\\033[0m\n", ft_strlen("\033[31mError\033[0m\n"));
+		write_error();
 	fresh(a, b, stack_a);
 	return (0);
 }

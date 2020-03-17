@@ -24,7 +24,10 @@ LIBFT   = ./includes/libft
 
 OBJPATH = objects
 
+DEFS = ./includes/push_swap.h
+
 GREEN:="\033[1;32m"
+
 ANSI_COLOR_RESET:="\x1b[0m"
 
 OBJS1 	= $(addprefix $(OBJPATH)/,$(SRC1:.c=.o))
@@ -45,12 +48,12 @@ $(OBJPATH)/%.o: %.c | $(OBJPATH)
 $(LIB_BINARY):
 	@make -C $(LIBFT)
 
-$(NAME1): $(OBJS1) $(LIB_BINARY)
+$(NAME1): $(OBJS1) $(LIB_BINARY) $(DEFS)
 	@gcc $(OBJS1) $(LIB_BINARY) -o $@
 	@echo $(GREEN)"     $(NAME1) is ready"$(ANSI_COLOR_RESET)
 
 
-$(NAME2): $(OBJS2) $(LIB_BINARY)
+$(NAME2): $(OBJS2) $(LIB_BINARY) $(DEFS)
 	@gcc $(OBJS2) $(LIB_BINARY) -o $@
 	@echo $(GREEN)"     $(NAME2) is ready"$(ANSI_COLOR_RESET)
 

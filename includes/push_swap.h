@@ -96,5 +96,7 @@ t_stack				*create_stack(t_stack **head, int argc, int *stack_a);
 int					parse_stack(char **a, int **stack_a, char programm);
 t_stack				*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl);
 char				**parse_flags_c(char **argv, t_bonus *fl);
+int					valid_arg(int argc, char **argv);
+int 				write_error(void);
 
 #endif
