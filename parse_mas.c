@@ -50,9 +50,9 @@ static int				ft_atoi_p(char ***a, int minus)
 	while (*star == '0' && *(star + 1) == '0' && *star)
 		(star)++;
 	if (***a != ' ' && ***a != '\0')
-		exit(write(STDERR_FILENO,"\033[31mError\033[0m\n", ft_strlen("\033[31mError\033[0m\n")));
+		exit(write_error());
 	if (**a - star - 1 > 10)
-		exit(write(STDERR_FILENO,"\033[31mError\033[0m\n", ft_strlen("\033[31mError\033[0m\n")));
+		exit(write_error());
 	rank_count = ft_to_power(10, (**a - star - 1));
 	while (rank_count > 0)
 	{
@@ -62,7 +62,7 @@ static int				ft_atoi_p(char ***a, int minus)
 	}
 	result *= (minus > 0) ? -1 : 1;
 	if (result >= 2147483648 || result <= -2147483649)
-		exit(write(STDERR_FILENO,"\033[31mError\033[0m\n", ft_strlen("\033[31mError\033[0m\n")));
+		exit(write_error());
 	return (result);
 }
 
