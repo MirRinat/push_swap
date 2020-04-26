@@ -49,15 +49,15 @@ void			more_int(long long int nb)
 	}
 }
 
-int valid_arg(int argc, char **argv)
+int				valid_arg(int argc, char **argv)
 {
-	int i;
-	int j;
+	int			i;
+	int			j;
 
 	i = 1;
 	if (argc == 1)
 		return (1);
-	while(i < argc)
+	while (i < argc)
 	{
 		j = 0;
 		while (argv[i][j] != '\0')

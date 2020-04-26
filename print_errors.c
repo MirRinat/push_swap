@@ -30,9 +30,9 @@ void			print_ko(t_stack **a, t_stack **b, int *stack_a)
 	exit(1);
 }
 
-int			write_error(void)
+int				write_error(void)
 {
-	write(STDERR_FILENO,"\033[31mError\033[0m\n", \
+	write(STDERR_FILENO, "\033[31mError\033[0m\n", \
 	ft_strlen("\033[31mError\033[0m\n"));
 	return (1);
 }
@@ -44,6 +44,3 @@ void			print_error(t_stack **a, t_stack **b)
 	free_stack(b);
 	exit(1);
 }
-
-
-

@@ -26,7 +26,7 @@ void		print_bonus(t_stack *a, t_stack *b, t_bonus *fl)
 		ft_printf("%d ", a->nb);
 	}
 	ft_printf("]\n\n%s", "\x1B[31mstack B:\x1B[0m [ ");
-	if (b != NULL)
+	if (b)
 	{
 		while (b->next != NULL)
 		{

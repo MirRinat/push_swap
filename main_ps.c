@@ -44,7 +44,7 @@ int			main(int argc, char **argv)
 
 	stack_a = NULL;
 	b = NULL;
-	if (valid_arg(argc,argv) == 0)
+	if (valid_arg(argc, argv) == 0)
 		return (write_error());
 	if (!ft_strcmp(argv[1], "-v") || !ft_strcmp(argv[1], "--help")
 	|| !ft_strcmp(argv[2], "--clear"))
@@ -52,11 +52,6 @@ int			main(int argc, char **argv)
 	size = parse_stack(argv, &stack_a, 'p');
 	if (argc >= 2)
 		a = create_stack(&a, size, stack_a);
-	if (fl.flag_v && if_sorted(&a, &b))
-	{
-		print_bonus(a, b, &fl);
-		return (0);
-	}
 	if (size > 0)
 		a = sort(a, b, size, &fl);
 	else if (size < 0)

@@ -32,7 +32,7 @@ int			main(int argc, char **argv)
 	stack_a = NULL;
 	if (argc == 1)
 		return (0);
-	if (valid_arg(argc,argv) == 0)
+	if (valid_arg(argc, argv) == 0)
 		exit(write_error());
 	if (!ft_strcmp(argv[1], "-c") || !ft_strcmp(argv[1], "--help")
 	|| !ft_strcmp(argv[2], "--clear"))
