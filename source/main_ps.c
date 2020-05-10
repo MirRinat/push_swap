@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 t_stack		*sort(t_stack *a, t_stack *b, int count_a, t_bonus *fl)
 {

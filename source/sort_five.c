@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 void		min_max_a(t_stack **a, t_stack **b, t_bonus *fl)
 {

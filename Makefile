@@ -22,6 +22,8 @@ SRC2 	= main_checker.c parse_mas.c bonus.c checker.c create_stack.c double_comma
 
 LIBFT   = ./includes/libft
 
+SRCS    = source
+
 OBJPATH = objects
 
 DEFS = ./includes/push_swap.h
@@ -41,7 +43,7 @@ all: $(LIB_BINARY) $(NAME1) $(NAME2)
 $(OBJPATH):
 	@mkdir $@
 
-$(OBJPATH)/%.o: %.c | $(OBJPATH)
+$(OBJPATH)/%.o: $(SRCS)/%.c | $(OBJPATH)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 

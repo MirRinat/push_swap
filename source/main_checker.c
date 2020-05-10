@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 void		fresh_c(t_stack *a, t_stack *b, int *stack_a)
 {
