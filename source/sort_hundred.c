@@ -72,14 +72,14 @@ void		sorting(t_stack **a, t_stack **b, t_bonus *fl, int count_a)
 	int		chunk;
 
 	i = 1;
+	if (count_a < 200)
+		interval = count_a / INTERVAL_HUNDRED;
+	else if (count_a < 700)
+		interval = count_a / INTERVAL_FIVE_HUNDRED;
+	else
+		interval = count_a / INTERVAL_MORE;
 	while (*a)
 	{
-		if (count_a < 200)
-			interval = count_a / INTERVAL_HUNDRED;
-		else if (count_a < 700)
-			interval = count_a / INTERVAL_FIVE_HUNDRED;
-		else
-			interval = count_a / INTERVAL_MORE;
 		chunk = interval * i++;
 		if (if_find_less_chunk(*a, chunk))
 			find_less_chunk(a, b, fl, chunk);

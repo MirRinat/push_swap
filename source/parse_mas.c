@@ -90,13 +90,13 @@ static int				check_minus(char ***a)
 
 int						parse_stack(char **a, int **stack_a, char programm)
 {
-	int					stack[15000];
+	int					stack[MAX];
 	int					minus;
 	int					size;
 
 	size = 0;
 	a++;
-	ft_bzero(stack, sizeof(int) * 15000);
+	ft_bzero(stack, sizeof(int) * MAX);
 	while (*a != NULL)
 	{
 		while (**a != '\0')

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msabre <msabre@student.42.fr>              +#+  +:+       +#+         #
+#    By: bglinda <bglinda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/03 15:08:28 by kbessa            #+#    #+#              #
-#    Updated: 2019/11/30 16:22:46 by msabre           ###   ########.fr        #
+#    Created: 2019/11/03 15:08:28 by bglinda           #+#    #+#              #
+#    Updated: 2019/11/30 16:22:46 by bglinda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,15 @@ NAME1	= push_swap
 
 NAME2	= checker
 
-CFLAGS 	= -Wall -Wextra -Werror
+CFLAGS 	= -Wall -Wextra -Werror -g
 
-SRC1 	= main_ps.c parse_mas.c bonus.c checker.c create_stack.c double_commands.c helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
+SRC1 	= main_ps.c parse_mas.c bonus.c checker.c create_stack.c double_commands.c \
+helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c \
+sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
 
-SRC2 	= main_checker.c parse_mas.c bonus.c checker.c create_stack.c double_commands.c  helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c sort_hundred.c sort_three.c stacks_function.c swap.c
+SRC2 	= main_checker.c parse_mas.c bonus.c checker.c create_stack.c double_commands.c \
+helper_functions.c insert_sort.c print_errors.c push.c rev_reverse.c reverse.c sort_five.c \
+sort_hundred.c sort_three.c stacks_function.c swap.c
 
 LIBFT   = ./includes/libft
 
@@ -38,12 +42,12 @@ OBJS2 	= $(addprefix $(OBJPATH)/,$(SRC2:.c=.o))
 
 LIB_BINARY	= ./includes/libft/libft.a
 
-all: $(LIB_BINARY) $(NAME1) $(NAME2)
+all: $(OBJPATH) $(LIB_BINARY) $(NAME1) $(NAME2)
 
 $(OBJPATH):
 	@mkdir $@
 
-$(OBJPATH)/%.o: $(SRCS)/%.c | $(OBJPATH)
+$(OBJPATH)/%.o: $(SRCS)/%.c $(DEFS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 
@@ -51,14 +55,13 @@ $(LIB_BINARY):
 	@make -C $(LIBFT)
 
 $(NAME1): $(OBJS1) $(LIB_BINARY) $(DEFS)
-	@gcc $(OBJS1) $(LIB_BINARY) -o $@
+	@gcc $(OBJS1) $(LIB_BINARY) -I ./includes -o $@
 	@echo $(GREEN)"     $(NAME1) is ready"$(ANSI_COLOR_RESET)
 
 
 $(NAME2): $(OBJS2) $(LIB_BINARY) $(DEFS)
-	@gcc $(OBJS2) $(LIB_BINARY) -o $@
+	@gcc $(OBJS2) $(LIB_BINARY) -I ./includes -o $@
 	@echo $(GREEN)"     $(NAME2) is ready"$(ANSI_COLOR_RESET)
-
 
 clean:
 	@/bin/rm -f $(OBJS)

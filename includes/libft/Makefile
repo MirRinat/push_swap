@@ -12,7 +12,7 @@
 
 CC = clang
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 NAME = libft.a
 
@@ -29,6 +29,7 @@ ft_isascii.c ft_digitmass_cpy.c ft_lstmap.c ft_memmove.c ft_putstr.c ft_strdup.c
 ft_isdigit.c ft_lstnew.c ft_memset.c ft_putstr_fd.c ft_strequ.c ft_strmapi.c ft_strsplit.c \
 ft_isprint.c ft_memalloc.c ft_putchar.c ft_strcat.c ft_striter.c ft_strncat.c ft_strstr.c ft_to_power.c\
 
+HEAD = ./headers
 
 DIR_C_PRF = ./src/ft_printf/
 DIR_C_GNL = ./src/get_next_line/
@@ -36,13 +37,7 @@ DIR_C_LIB = ./src/libft/
 
 DIR_O = obj
 
-
-BLACK:="\033[1;30m"
-RED:="\033[1;31m"
 GREEN:="\033[1;32m"
-CYAN:="\033[1;35m"
-PURPLE:="\033[1;36m"
-WHITE:="\033[1;37m"
 EOC:="\033[0;0m"
 
 CFILES = $(LIBFT_C) $(PRINTF_C) $(GNL_C)
@@ -62,15 +57,15 @@ $(NAME): $(PATH_O)
 
 $(DIR_O)/%.o: $(DIR_C_LIB)%.c
 	@mkdir -p $(DIR_O)
-	@$(CC) $(FLAGS) -c $< -o $@;
+	@$(CC) $(FLAGS) -I $(HEAD) -c $< -o $@;
 
 $(DIR_O)/%.o: $(DIR_C_PRF)%.c
 	@mkdir -p $(DIR_O)
-	@$(CC) $(FLAGS) -c $< -o $@;
+	@$(CC) $(FLAGS) -I $(HEAD) -c $< -o $@;
 
 $(DIR_O)/%.o: $(DIR_C_GNL)%.c
 	@mkdir -p $(DIR_O)
-	@$(CC) $(FLAGS) -c $< -o $@;
+	@$(CC) $(FLAGS) -I $(HEAD) -c $< -o $@;
 
 clean:
 	@rm -f $(DIR_O)/*.o

@@ -27,6 +27,7 @@
 # define PURPLE	"\033[1;36m"
 # define WHITE	"\033[1;37m"
 # define EOC	"\033[0;0m"
+# define MAX	40000
 
 typedef struct		s_stack
 {

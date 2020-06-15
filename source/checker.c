@@ -40,15 +40,6 @@ void			what_command(char *str, t_stack **a, t_stack **b, t_bonus *fl)
 		print_error(a, b);
 }
 
-void			more_int(long long int nb)
-{
-	if (nb > 2147483647 || nb < -2147483648)
-	{
-		write_error();
-		exit(1);
-	}
-}
-
 int				valid_arg(int argc, char **argv)
 {
 	int			i;
